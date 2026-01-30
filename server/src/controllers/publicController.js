@@ -1,16 +1,18 @@
-const Product = require('../models/Testimonial')
+const Product = require('../models/Product')
 const Custom = require('../models/Custom')
 const Testimonial = require('../models/Testimonial')
 
 // GET /api/public/products (Filter/Search)
 const getProducts = async (req, res, next) => {
     try {
+        console.log('red')
         const products = await Product.find({})
         if(!products){
             res.status(404).json({message: 'There are no products'})
         }
+        res.json(products)
     } catch (error) {
-        next()
+        res.status(404).json({message: 'nope'})
     }
 }
 
@@ -20,9 +22,9 @@ const getProducts = async (req, res, next) => {
 // POST /api/public/custom-orders (Create's a custom order)
 const createCustom = async (req, res, next) => {
     try {
-        const product = req.body
-        if(!product){
-            res.status(404).json({message: 'Missng information'})
+        const custom = req.body
+        if(!custom){
+            res.status(404).json({message: 'Missing information'})
         }
         const products = await Product.create(product)
     } catch (error) {
@@ -31,7 +33,7 @@ const createCustom = async (req, res, next) => {
 }
 
 // GET /api/public/testimonials (Gets the testimonials with the approved status)
-const getTestimonial = (req, res, next) => {
+const getTestimonial = async (req, res, next) => {
     try {
         const testimonials = await Testimonial.find({})
         if(!testimonials){
@@ -43,16 +45,17 @@ const getTestimonial = (req, res, next) => {
 }
 
 // POST /api/public/testimonials (Create's a testimonial with the pending status ) 
-const createTestimonial = () => {
+const createTestimonial = async (req, res, next) => {
     try {
         const incomingTestimonial = req.body
         if(!incomingTestimonial){
             res.status(404).json({message:'Missing information'})
         }
         const testimonials = await Testimonial.create(incomingTestimonial)
+        res.status(201).json({testimonials})
     } catch (error) {
         next(error)
     }
 }
 
-module.exports = getProducts, createCustom, getTestimonial, createTestimonial
+module.exports = {getProducts, createCustom, getTestimonial, createTestimonial}

@@ -5,9 +5,9 @@ const cors = require("cors")
 
 const connectDB = require("./src/config/db")
 const authRoutes = require("./src/routes/authRoutes")
-const courseRoutes = require("./src/routes/courseRoutes")
-const publicRoutes = require("./src/routes/publicRoute")
-const errorHandler= require("./src/middleware/errorHandler")
+// const courseRoutes = require("./src/routes/courseRoutes")
+const publicRoutes = require("./src/routes/publicRoutes")
+// const errorHandler= require("./src/middleware/errorHandler")
 const { connect } = require("mongoose")
 
 
@@ -23,11 +23,15 @@ app.use(express.urlencoded({extended:true})) // Parses Form data for login if ne
 app.get('/api/health', (req,res)=> res.json({ok:true}))
 
 // Routes
+
+// Test
+app.use('/', (req, res, next) => {res.send("Hello World!")})
+
 app.use('/api/auth', authRoutes)
 app.use('/api/public', publicRoutes)
 
 // Error middleware goes last
-app.use(errorHandler)
+// app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 

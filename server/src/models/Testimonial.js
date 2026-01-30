@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const testimonialSchema = new mongoose.Schema({
     name:{type: String, required:true, },
-    rating:{enum:[1, 2, 3, 4, 5]},
+    rating:{type:Number, enum:[1, 2, 3, 4, 5], required: false},
     message:{required: false, type: String, maxLength:1000},
-    status:{type: Boolean, required:true}
+    aproved:{type: Boolean, required:true}
 },{timestamps:true})
 
 

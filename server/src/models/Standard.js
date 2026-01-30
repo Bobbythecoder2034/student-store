@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 // ryder
 const standardSchema = new mongoose.Schema({
@@ -15,7 +15,10 @@ const standardSchema = new mongoose.Schema({
         // totals (subtotal/tax/total)
         subtotal:{type:Number, required:true, trim:true},
         tax:{type:Number, required:true, trim:true},
-// do total down below with the methods and what not
+
+        // preferances
+        color:{type:String, required:true, trim:true, enum:['red','blue','yellow','orange','purple', 'green']},
+        material:{type:String, required:true, trim:true, enum:['Nylon','PLA','ABS']},
 
         // status (Pending/In Progress/Ready/Completed/Cancelled)
         status:{type:String,required:true,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"]},

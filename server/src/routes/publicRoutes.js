@@ -14,3 +14,5 @@ router.get('/products', getProducts)
 router.post('/custom-orders', createCustom)
 router.get('/testimonials', getTestimonial)
 router.post('/testimonials', createTestimonial)
+
+module.exports = router

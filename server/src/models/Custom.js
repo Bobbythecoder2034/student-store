@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const customSchema = new mongoose.Schema({
 
@@ -13,8 +13,8 @@ const customSchema = new mongoose.Schema({
         description:{type:String, required:true, trim:true, maxlength:1000},
         
         // preferences
-        color:{type:String, required:true, trim:true, maxlength:100},
-        maerial:{type:String, required:true, trim:true, maxlength:100},
+        color:{type:String, required:true, trim:true, enum:['red','blue','yellow','orange','purple', 'green']},
+        material:{type:String, required:true, trim:true, enum:['Nylon','PLA','ABS']},
         size:{type:String, required:true, trim:true, maxlength:100},
 
         // reference file URLs + metadata

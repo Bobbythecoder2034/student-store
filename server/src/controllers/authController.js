@@ -15,6 +15,7 @@ function signToken(user){
         process.env.JWT_SECRET,
         {subject:String(user._id), expiresIn: process.env.JWT_EXPIRES_IN || '7d'}
     )
+    
 }
 
 // POST /api/auth/register
@@ -71,7 +72,8 @@ async function login(req,res,next) {
         res.json({
             data:{
                 token,
-                user:{id: user._id, name: user.name, email: user.email}
+                user:{id: user._id, name: user.name, email: user.email},
+                what:{stuff:"successfull login"}
             }
         })
     }catch(err){
