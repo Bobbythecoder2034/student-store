@@ -5,12 +5,24 @@ const Testimonial = require('../models/Testimonial')
 // GET /api/public/products (Filter/Search)
 const getProducts = async (req, res, next) => {
     try {
-        console.log('red')
         const products = await Product.find({})
         if(!products){
             res.status(404).json({message: 'There are no products'})
         }
         res.json(products)
+    } catch (error) {
+        res.status(404).json({message: 'nope'})
+    }
+}
+
+// GET /api/public/customs (Filter/Search)
+const getCustom = async (req, res, next) => {
+    try {
+        const customs = await Custom.find({})
+        if(!customs){
+            res.status(404).json({message: 'There are no customs'})
+        }
+        res.json(customs)
     } catch (error) {
         res.status(404).json({message: 'nope'})
     }
@@ -58,4 +70,4 @@ const createTestimonial = async (req, res, next) => {
     }
 }
 
-module.exports = {getProducts, createCustom, getTestimonial, createTestimonial}
+module.exports = {getProducts, getCustom, createCustom, getTestimonial, createTestimonial}
