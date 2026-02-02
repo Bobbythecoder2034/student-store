@@ -5,34 +5,40 @@ import { FaArrowDown } from "react-icons/fa";
 
 const Products = ({products}) => {
 
+    
     const [search, setSearch] = useState(false)
     const [isSearch, setIsSearch] = useState(false)
     const [filter, setFilter] = useState([])
 
     return (
-        <div>
+        <>
+    
 
-            <div> 
+                <div> 
 
-                <input type="text" id='searchText' />
-                <button onClick={setIsSearch(true);setSearch()}> search </button>
-                <button onClick={}> filter </button>
-                <select name="sort" >
-                        <option value="name down">{FaArrowDown} Name</option>
-                        <option value="name up">{FaArrowUp} Name</option>
-                        <option value="price down">{FaArrowDown} Price </option>
-                        <option value="price up">{FaArrowUp} Price</option>
-                    </select>
+                    <input type="text" id='searchText' />
+                    <button onClick={() => {setIsSearch(true); setSearch()}}> search </button>
+                    <button onClick={() => {}}>Filter</button>
+                    <select name="sort" >
 
-            </div>
+                            <option value="name down">{FaArrowDown} Name</option>
+                            <option value="name up">{FaArrowUp} Name</option>
+                            <option value="price down">{FaArrowDown} Price </option>
+                            <option value="price up">{FaArrowUp} Price</option>
 
-            <div>
+                        </select>
 
-                <List>
+                </div>
 
-            </div>
+                <div>
 
-        </div>
+                    <List/>
+
+                </div>
+  
+        </>
+        
+        
     )
 }
 

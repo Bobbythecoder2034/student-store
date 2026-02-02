@@ -5,7 +5,6 @@ const cors = require("cors")
 
 const connectDB = require("./src/config/db")
 const authRoutes = require("./src/routes/authRoutes")
-// const courseRoutes = require("./src/routes/courseRoutes")
 const publicRoutes = require("./src/routes/publicRoutes")
 // const errorHandler= require("./src/middleware/errorHandler")
 const { connect } = require("mongoose")

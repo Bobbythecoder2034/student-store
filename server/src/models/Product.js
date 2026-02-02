@@ -13,8 +13,8 @@ const productSchema = new mongoose.Schema(
 
         // color
         
-        price: {type: Number, required:true},
-        category: {type: String, required:true, enum: ['miniatures', 'prototypes', 'functional-parts', 'decorative', 'toys', 'organizers']},
+        price: {type: Number, required: true},
+        category: {type: String, required: true, enum: ['miniatures', 'prototypes', 'functional-parts', 'decorative', 'toys', 'organizers']},
         inStock: {type: Boolean, default: true},
         featured: {type: Boolean, default: true}
     },

@@ -57,7 +57,7 @@ async function login(req,res,next) {
     try{
         const {email, password} = req.body
         if(!email || !password){
-            return res.status(400).json({error: "email and password are required"})
+            return res.status(400).json({error: "Email and Password are required"})
         }
 
         const user = await User.findOne({email:email.toLowerCase()})
@@ -73,7 +73,7 @@ async function login(req,res,next) {
             data:{
                 token,
                 user:{id: user._id, name: user.name, email: user.email},
-                what:{stuff:"successfull login"}
+                what:{stuff: "Successful Login"}
             }
         })
     }catch(err){

@@ -34,11 +34,12 @@ const getCustom = async (req, res, next) => {
 // POST /api/public/custom-orders (Create's a custom order)
 const createCustom = async (req, res, next) => {
     try {
-        const custom = req.body
-        if(!custom){
+        const incomingCustoms = req.body
+        if(!incomingCustoms){
             res.status(404).json({message: 'Missing information'})
         }
-        const products = await Product.create(product)
+        
+        const customs = await Custom.create(incomingCustoms)
     } catch (error) {
         next(error)
     }
@@ -51,6 +52,7 @@ const getTestimonial = async (req, res, next) => {
         if(!testimonials){
             res.status(404).json({message: 'There are no testimonials'})
         }
+        res.json(testimonials)
     } catch (error) {
         next(error)
     }
