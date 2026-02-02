@@ -9,26 +9,27 @@ const Products = ({products}) => {
     const [isSearch, setIsSearch] = useState(false)
     const [filter, setFilter] = useState([])
 
+
     return (
         <div>
 
             <div> 
-
                 <input type="text" id='searchText' />
-                <button onClick={setIsSearch(true);setSearch()}> search </button>
-                <button onClick={}> filter </button>
-                <select name="sort" >
-                        <option value="name down">{FaArrowDown} Name</option>
-                        <option value="name up">{FaArrowUp} Name</option>
-                        <option value="price down">{FaArrowDown} Price </option>
-                        <option value="price up">{FaArrowUp} Price</option>
-                    </select>
-
+                <button onClick={() => {setIsSearch(true);setSearch()}}> search </button>
+                <button onClick={() => {}}> filter </button>
+                {/* <select name="sort" >
+                    <option value="name down"><FaArrowDown/> Name</option>
+                    <option value="name up"><FaArrowUp/> Name</option>
+                    <option value="price down"><FaArrowDown/> Price </option>
+                    <option value="price up"><FaArrowUp/> Price</option>
+                </select> */}
             </div>
 
             <div>
 
-                <List>
+                {/* hello 3 */}
+                
+                <List products={products}/>
 
             </div>
 
