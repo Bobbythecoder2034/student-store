@@ -3,76 +3,65 @@ import SingleProduct from './SingleProduct'
 const List = ({products, filters, isSearch, search}) => 
 {
 
-        const finding = () => {
-                products.find((product)=>
-                {
+        if(isSearch)
+        {
 
-                        if(products.name === search)
-                        {
-                                                
-                                <SingleProduct 
-
-                                        key={product.id}         
-                                        filterProducts={filters} 
-                                        {...product}
-                                        
-                                />
-                                                
-                        }
-
-                })
+                const regex = new RegExp(search, 'i')
+                const found  = products.filter((product)=>{console.log(product.name.match(regex));return product.name.match(regex)})
+                console.log(search)
 
         }
-
-        const filtering = () =>{
-
-                products.filter((product)=>{
-
-                        filters.foreach((filter)=>{
-                                if(product.category === filter)
-                                {
-
-                                        <SingleProduct 
-
-                                                key={product.id}         
-                                                filterProducts={filters} 
-                                                {...product}
-                                
-                                        />
-
-                                }       
-                        })
-
-                })
-
-        }
-
-        const mapping = () => {
-
-                products.map((product)=>{
-                        
-                        return(
-                        
-                                <SingleProduct 
-
-                                        key={product.id}         
-
-                                        filterProducts={filters} 
-                                        {...product}
-                                
-                                />
-                                
-                        )
-                        
-                })
-        }
-
+        
         return(
 
                 <div>
 
-                        {isSearch?finding: typeof(filtering)=="Array"?filtering:mapping()}
+                        {isSearch?products.filter((product)=>
+                        {
 
+                                if(products.name === search)
+                                {
+                                                        
+                                        <SingleProduct 
+
+                                                key={product.id}
+                                                {...product}
+                                                
+                                        />
+                                                        
+                                }
+
+                        }): typeof(filters)==="Array"?products.filter((product)=>{
+                                filters.foreach((filter)=>{
+                                        if(product.category === filter)
+                                        {
+
+                                                <SingleProduct 
+
+                                                        key={product.id}
+                                                        {...product}
+                                        
+                                                />
+
+                                        }       
+                                })
+                        }):products.map((product)=>{
+
+                                return(
+                                
+                                        <SingleProduct 
+                                        
+                                                key={product.id} 
+                                                name={product.name} 
+                                                description={product.description} 
+                                                {...product}
+                                        
+                                        />
+                                        
+                                )
+                                
+                        })}
+                        
                 </div>
 
         )
