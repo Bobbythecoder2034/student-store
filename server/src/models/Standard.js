@@ -17,11 +17,11 @@ const standardSchema = new mongoose.Schema({
         tax:{type:Number, required:true, trim:true},
 
         // preferances
-        color:{type:String, required:true, trim:true, enum:['red','blue','yellow','orange','purple', 'green']},
-        material:{type:String, required:true, trim:true, enum:['Nylon','PLA','ABS']},
+        color:{type:String, trim:true, enum:['red','blue','yellow','orange','purple', 'green'], default:'red'},
+        material:{type:String, trim:true, enum:['Nylon','PLA','ABS'], default: 'Nylon'},
 
         // status (Pending/In Progress/Ready/Completed/Cancelled)
-        status:{type:String,required:true,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"]},
+        status:{type:String,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"],default:'Pending'},
 
         // paid flag (future payments)
         paidFlag:{type:Number, required:false, default:0.00},

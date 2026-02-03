@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const customSchema = new mongoose.Schema({
+const customOrderSchema = new mongoose.Schema({
 
 
         // customer info (name/email/phone/address)
@@ -8,13 +8,14 @@ const customSchema = new mongoose.Schema({
         email:{type:String, required:true, trim:true, maxlength:100},
         phone:{type:Number, required:true, trim:true, maxlength:100},
         address:{type:String, required:true, trim:true, maxlength:100},
+        //Change this to a user object
 
         // description, preferences (color/material/size)
         description:{type:String, required:true, trim:true, maxlength:1000},
         
         // preferences
-        color:{type:String, required:true, trim:true, enum:['red','blue','yellow','orange','purple', 'green']},
-        material:{type:String, required:true, trim:true, enum:['Nylon','PLA','ABS']},
+        color:{type:String, trim:true, enum:['red','blue','yellow','orange','purple', 'green'], default:'red'},
+        material:{type:String, trim:true, enum:['Nylon','PLA','ABS'], default:'Nylon'},
         size:{type:String, required:true, trim:true, maxlength:100},
 
         // reference file URLs + metadata
@@ -22,7 +23,7 @@ const customSchema = new mongoose.Schema({
         metadata:{type:String, required:true, trim:true, maxlength:1000},
 
         // status (Submitted/Reviewed/Quoted/In Progress/Completed)
-        status:{type:String,required:true,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"]},
+        status:{type:String,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"], default:'Pending'},
 
         // internal notes, assigned student/printer (optional)
         notes:{type:String, required:false, default:'no notes', trim:true, maxlength:1000},
@@ -33,4 +34,4 @@ const customSchema = new mongoose.Schema({
 
 
 
-module.exports = mongoose.models.Custom || mongoose.model("Custom", customSchema)
+module.exports = mongoose.models.CustomOrder || mongoose.model("CustomOrder", customOrderSchema)

@@ -1,51 +1,59 @@
-import React from 'react'
+import {useState} from 'react'
 
 const Order = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        description: '',
+        color: 'red',
+        material: 'PLA',
+        size: '',
+        file: null
+    })
+
+    const handleChange = (e) =>{
+        const {name, value} = e.target
+        setFormData(prev => ({...prev, [name]: value}))
+    }
+
+    const handleFileChange = (e) =>{
+        setFormData(prev => ({...prev, file: e.target.files[0]}))
+    }
+
+    const handleSubmit = async (e) =>{
+        e.preventDefault()
+        // TODO: Send formData to backend
+        console.log(formData)
+    }
+
     return (
         <div id="container">
-            <form action=""> 
-                <label htmlFor="name">Name:</label>
-                    <input type="text" placeholder="Name" required/>
-
-                <label htmlFor="email">Email:</label>
-                    <input type="email" placeholder="Email" required/>
-
-                <label htmlFor="phone">Phone Number:</label>
-                    <input type="tel" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-
-                <label htmlFor="address">Address:</label>
-                    <input type="text" placeholder="address" required/>
-
-                <label htmlFor="description">Product Description:</label>
-                    <input type="text" placeholder="description" required/>
-
-                <label htmlFor="color">Choose your color:</label>
-                    <select name="color" id="color">
-                        <option value="white">White</option>
-                        <option value="black">Black</option>
-                        <option value="red">Red</option>
-                        <option value="blue">Blue</option>
-                        <option value="green">Green</option>
-                        <option value="purple">Purple</option>
-                    </select>
-
-                <label htmlFor="material">Choose your material:</label>
-                    <select name="material" id="material">
-                        <option value="nylon">Nylon</option>
-                        <option value="PLA">PLA</option>
-                        <option value="ABS">ABS</option>
-                    </select>
-
-                <label htmlFor="size">Choose your size:</label>
-                    <select name="size" id="size">
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                    </select>
+            <form onSubmit={handleSubmit}>
+                <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
+                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required/>
+                <input type="tel" name="phone" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={formData.phone} onChange={handleChange} required/>
+                <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required/>
+                <textarea name="description" placeholder="Product Description" value={formData.description} onChange={handleChange} required/>
                 
-                <label htmlFor="file">Upload file: (STL/ZIP/etc)</label>
-                    <input type="file"/>
+                <select name="color" value={formData.color} onChange={handleChange}>
+                    <option value="red">Red</option>
+                    <option value="blue">Blue</option>
+                    <option value="green">Green</option>
+                    <option value="purple">Purple</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="orange">Orange</option>
+                </select>
 
+                <select name="material" value={formData.material} onChange={handleChange}>
+                    <option value="Nylon">Nylon</option>
+                    <option value="PLA">PLA</option>
+                    <option value="ABS">ABS</option>
+                </select>
+
+                <input type="text" name="size" placeholder="Size" value={formData.size} onChange={handleChange} required/>
+                <input type="file" onChange={handleFileChange} required/>
                 <button type="submit">Submit</button>
             </form>
         </div>
