@@ -1,12 +1,3 @@
-// import {useState, useEffect} from 'react'
-
-import Navbar from './components/Navbar.jsx'
-// import Home from './pages/Home.jsx'
-import Products from './pages/Products.jsx'
-import Test from './pages/Test.jsx'
-// import Detail from './pages/Detail.jsx'
-// import Testimonials from './pages/Testimonials.jsx'
-// import Order from './pages/Order.jsx'
 
 const mockData = [{"id":1,"name":"Janelle","slug":"jblakeslee0","description":"id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc","price":299.99,"inStock":true,"featured":false},
 {"id":2,"name":"Thorstein","slug":"tlaban1","description":"blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat","price":59.99,"inStock":false,"featured":true},
@@ -19,22 +10,7 @@ const mockData = [{"id":1,"name":"Janelle","slug":"jblakeslee0","description":"i
 {"id":9,"name":"Marco","slug":"mballham8","description":"diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget","price":1.99,"inStock":true,"featured":false},
 {"id":10,"name":"Sue","slug":"sseys9","description":"at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget","price":39.99,"inStock":false,"featured":true}]
 
-// const parsed = JSON.parse(mockData)
-// console.log(typeof(mockData))
 
+let search = "jan"
 
-const App = () => {
-    return (
-      <div className="app">
-        <Navbar/>
-
-        <main>
-          <Products products={mockData}/>
-            {/* <Test/> */}
-          {/* hello 4 */}
-        </main>
-      </div>
-    )
-}
-
-export default App
+console.log(mockData.filter((person) => person.name.match(new RegExp(search,'i'))))

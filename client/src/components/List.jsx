@@ -3,33 +3,33 @@ import SingleProduct from './SingleProduct'
 const List = ({products, filters, isSearch, search}) => 
 {
 
+        
+
         if(isSearch)
         {
 
-                const regex = new RegExp(search, 'i')
-                const found  = products.filter((product)=>{console.log(product.name.match(regex));return product.name.match(regex)})
                 console.log(search)
+                
 
         }
         
         return(
 
                 <div>
+                        {/* {search} */}
+                        <br />
+                        <br />
+                        {isSearch?products.filter((product)=> product.name.match(new RegExp(search, 'i')) !== null).map((product)=>{
+                                
+                                return ( <SingleProduct
+                                            
+                                        key={product.id} 
+                                        name={product.name} 
+                                        description={product.description} 
+                                        {...product}
 
-                        {isSearch?products.filter((product)=>
-                        {
+                                />)
 
-                                if(products.name === search)
-                                {
-                                                        
-                                        <SingleProduct 
-
-                                                key={product.id}
-                                                {...product}
-                                                
-                                        />
-                                                        
-                                }
 
                         }): typeof(filters)==="Array"?products.filter((product)=>{
                                 filters.foreach((filter)=>{
