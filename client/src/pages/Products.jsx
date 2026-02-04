@@ -10,11 +10,11 @@ const Products = ({products}) => {
     const [filter, setFilter] = useState([])
     const [load, setLoad] = useState(0)
     
-    useEffect(() => {
-      
-        setSearch(document.getElementById('search').ariaValueText)
-        // console.log(document.getElementById('search'))
-    }, [isSearch])
+    const handleSearch = (e) => {
+
+        setSearch(e.target.value)
+
+    }
     
 
     return (
@@ -22,10 +22,11 @@ const Products = ({products}) => {
 
             <div> 
                 <input type="text" id='searchText' />
-                <form action="">
-                    <br /><button onClick={() => {setIsSearch(true);}}> search </button> <input type="text" id="search"/>
+                <form onSubmit={e => e.preventDefault()}>
+                    <br /><button onClick={() => {hanleSearch}}> search </button> <input value={search} type="text" id="search"/>
+                    <br /><button onClick={() => {handleFilter}}> filter </button>
+                    <br /><button onClick={()=>{setIsSearch(false); setFilter(null)}}> load all </button>
                 </form>
-                <br /><button onClick={() => {setFilter}}> filter </button>
                 {/* <select name="sort" >
                     <option value="name down"><FaArrowDown/> Name</option>
                     <option value="name up"><FaArrowUp/> Name</option>
