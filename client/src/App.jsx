@@ -4,9 +4,9 @@ import Navbar from './components/Navbar.jsx'
 // import Detail from './pages/Detail.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
-// import Products from './pages/Products.jsx'
+import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
-// import Order from './pages/Order.jsx'
+import Order from './pages/CustomOrder.jsx'
 
 const mockData = [{"id":1,"name":"Janelle","slug":"jblakeslee0","description":"id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc","price":299.99,"inStock":true,"featured":false},
 {"id":2,"name":"Thorstein","slug":"tlaban1","description":"blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat","price":59.99,"inStock":false,"featured":true},
@@ -31,8 +31,10 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path='/products' element={<Products/>}/> {/* Products link has map error */}
+            <Route path='/testimonials' element={<Testimonials/>}/> {/* Only shows the word 'testimonials' along with navbar */}
+            <Route path='/custom-order' element={<Order/>}/>
             <Route path="*" element={<NotFound/>}/>
-            <Route path='/testimonials' element={<Testimonials/>}/>
           </Routes>
         </main>
       </div>
