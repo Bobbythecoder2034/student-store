@@ -6,7 +6,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev": "nodemon dev"
   },
   "keywords": [],
   "author": "",
@@ -22,7 +23,8 @@
     "@eslint/js": "^9.39.2",
     "eslint": "^8.57.1",
     "eslint-plugin-react": "^7.37.5",
-    "globals": "^17.2.0"
+    "globals": "^17.2.0",
+    "nodemon": "^3.1.11"
   },
   "browserslist": {
     "production": [
