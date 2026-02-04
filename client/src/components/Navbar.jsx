@@ -7,7 +7,7 @@ export default function Navbar(){
             <nav className="nav-inner">
                 <div className="brand">Student Hub</div>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/" end>
+                <NavLink className={({isActive}) => "link" + (isActive ? "active" : "")} to="/" end>
                     Home
                 </NavLink>
 

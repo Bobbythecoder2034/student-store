@@ -1,5 +1,5 @@
 const Product = require('../models/Product')
-const Custom = require('../models/Custom')
+const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
 
 // GET /api/public/products (Filter/Search)

@@ -6,7 +6,6 @@ const Home = () => {
         <div className="card">
             <h2>Home</h2>
             <p>"Once you realize you can do anything, you're free... you could fly."</p>
-            <Navbar/>
             <p>"Nobody could touch you... nobody."</p>
         </div>
     )
