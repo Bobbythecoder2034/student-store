@@ -3,31 +3,17 @@ import {NavLink} from 'react-router-dom'
 
 export default function Navbar(){  
     return (
-        <header className="nav">
-            <nav className="nav-inner">
-                <div className="brand">Student Hub</div>
+        <div className="nav">
+            <div className="ban">
+                <img src="" alt="" />
+                <h2>Student-Store</h2>
+            </div>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/" end>
-                    Home
-                </NavLink>
+            <div className="buttons">
+                <button className='products'>Products</button>
+                <button className='custom'>Create Custom</button>                
+            </div>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/products">
-                    Products
-                </NavLink>
-
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/products/[slug]">
-                    {/* Not sure how to do the link for this one */}
-                    Product Detail Page
-                </NavLink>
-
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/testimonials">
-                    Testemonials
-                </NavLink>
-
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/custom-order">
-                    Custom Order
-                </NavLink>
-            </nav>
-        </header>
+        </div>
     )
 }

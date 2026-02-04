@@ -58,6 +58,7 @@ const List = ({products, filters, isSearch, search}) =>
                         }
                 
                 <div/>
+                
 
         )
 

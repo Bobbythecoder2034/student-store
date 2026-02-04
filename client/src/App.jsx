@@ -6,6 +6,7 @@ import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
 // import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
+import './styles/css/style.css'
 // import Order from './pages/Order.jsx'
 
 
