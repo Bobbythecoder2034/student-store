@@ -34,7 +34,7 @@ app.use('/api/public', publicRoutes)
 const PORT = process.env.PORT || 5000
 
 // Test
-app.use('/', (req, res, next) => {res.send("Hello World!")})
+app.use('/', (req, res, next) => {res.send("You a bum")})
 
 connectDB(process.env.MONGODB_URI).then(() =>{
     app.listen(PORT, ()=> console.log(`Server is running on http://localhost:${PORT}`))
