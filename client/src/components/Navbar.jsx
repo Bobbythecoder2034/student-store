@@ -1,33 +1,39 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {NavLink} from "react-router-dom";
 
-export default function Navbar(){  
+export default function Navbar(){
+
+    const linkClass = ({ isActive }) => "link" + (isActive ? " active" : "");
+
     return (
         <header className="nav">
             <nav className="nav-inner">
-                <div className="brand">Student Hub</div>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? "active" : "")} to="/" end>
-                    Home
+                {/* Logo */}
+                <NavLink to="/" className="brand">
+                    Student Hub
                 </NavLink>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/products">
-                    Products
+                {/* Links */}
+                <div className="nav-links">
+                    <NavLink className={linkClass} to="/" end>
+                        Home
+                    </NavLink>
+
+                    <NavLink className={linkClass} to="/products">
+                        Products
+                    </NavLink>
+
+                    <NavLink className={linkClass} to="/testimonials">
+                        Testimonials
+                    </NavLink>
+                </div>
+
+                {/* CTA Button */}
+                <NavLink className="cta" to="/custom-order">
+                    Custom Print
                 </NavLink>
 
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/products/[slug]">
-                    {/* Not sure how to do the link for this one */}
-                    Product Detail Page
-                </NavLink>
-
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/testimonials">
-                    Testemonials
-                </NavLink>
-
-                <NavLink className={({isActive}) => "link" + (isActive ? " active" : "")} to="/custom-order">
-                    Custom Order
-                </NavLink>
             </nav>
         </header>
-    )
+    );
 }
