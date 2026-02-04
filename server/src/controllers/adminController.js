@@ -7,9 +7,21 @@
  * -requireAuth
  * -requireAdmin
  */
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-const Course = require('../models/Course')
+const CustomOrder = require('../models/CustomOrder')
 
+
+function signToken(user){
+    //JWT best practices: use 'sub' for subject (user id)
+    return jwt.sign(
+        {email:user.email, name:user.name,},
+        process.env.JWT_SECRET,
+        {subject:String(user._id), expiresIn: process.env.JWT_EXPIRES_IN || '7d'}
+    )
+    
+}
 
 //GET /api/admin/users
 async function getAllUsers(req, res, next){
@@ -53,4 +65,33 @@ async function getAllProducts(req,res,next){
         next(error)
     }
 }
+// POST /api/admin/login
+async function adminLogin(req,res,next) {
+    try{
+        const {email, password} = req.body
+        if(!email || !password){
+            return res.status(400).json({error: "Email and Password are required"})
+        }
+
+        const user = await User.findOne({email:email.toLowerCase()})
+        if(!user) return res.status(401).json({error: "Invalid Credentials"})
+        
+        const ok = await bcrypt.compare(password, user.passwordHash)
+        if(!ok) return res.status(404).json({error:"Invalid Credentials"})
+        // Invalid Credentials is there to avoid lawsuits, as telling people which one is wrong reduces possible outcomes
+        
+        const token = signToken(user)
+        //sends this back to the user
+        res.json({
+            data:{
+                token,
+                user:{id: user._id, name: user.name, email: user.email, role: user.role},
+                what:{stuff: "Successful Admin Login"}
+            }
+        })
+    }catch(err){
+        next(err)
+    }
+}
 //Change this to work for our things
+module.exports = {adminLogin}
