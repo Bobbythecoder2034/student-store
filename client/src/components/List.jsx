@@ -45,24 +45,10 @@ const List = ({products, filters, isSearch, search}) =>
 
                                         }       
                                 })
-                        }):products.map((product)=>{
-
-                                return(
-                                
-                                        <SingleProduct 
-                                        
-                                                key={product.id} 
-                                                name={product.name} 
-                                                description={product.description} 
-                                                {...product}
-                                        
-                                        />
-                                        
-                                )
-                                
-                        })}
-                        
-                </div>
+                        }
+                
+                <div/>
+                
 
         )
 

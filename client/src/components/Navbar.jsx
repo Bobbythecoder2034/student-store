@@ -5,35 +5,21 @@ export default function Navbar(){
     const linkClass = ({ isActive }) => "link" + (isActive ? " active" : "");
 
     return (
-        <header className="nav">
-            <nav className="nav-inner">
+<div className="nav">
+         <div className="nav-info">
+            <div className="placeholder-logo"></div>
+            <div className="blurb">
+                <h3 className='nav-head'>West-MEC</h3>
+            <sub className='nav-sub'>Student Print Shop</sub>
+            </div>
+            
+            </div>   
 
-                {/* Logo */}
-                <NavLink to="/" className="brand">
-                    Student Hub
-                </NavLink>
-
-                {/* Links */}
-                <div className="nav-links">
-                    <NavLink className={linkClass} to="/" end>
-                        Home
-                    </NavLink>
-
-                    <NavLink className={linkClass} to="/products">
-                        Products
-                    </NavLink>
-
-                    <NavLink className={linkClass} to="/testimonials">
-                        Testimonials
-                    </NavLink>
-                </div>
-
-                {/* CTA Button */}
-                <NavLink className="cta" to="/custom-order">
-                    Custom Print
-                </NavLink>
-
-            </nav>
-        </header>
-    );
+            <div className="nav-interaction">
+                <button className='nav-products'>Products</button>
+                <button className="nav-custom">Custom Print</button>
+            </div>
+        </div>
+        
+    )
 }
