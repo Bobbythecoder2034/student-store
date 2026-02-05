@@ -65,33 +65,16 @@ async function getAllProducts(req,res,next){
         next(error)
     }
 }
-// POST /api/admin/login
-async function adminLogin(req,res,next) {
-    try{
-        const {email, password} = req.body
-        if(!email || !password){
-            return res.status(400).json({error: "Email and Password are required"})
-        }
+async function deleteProductAsAdmin(req,res,next) {
+    try {
+        const deleted = await Product.findByIdAndDelete(req.params.id)
+        if(!deleted) return res.status(404).json({error:"Course not found"})
 
-        const user = await User.findOne({email:email.toLowerCase()})
-        if(!user) return res.status(401).json({error: "Invalid Credentials"})
-        
-        const ok = await bcrypt.compare(password, user.passwordHash)
-        if(!ok) return res.status(404).json({error:"Invalid Credentials"})
-        // Invalid Credentials is there to avoid lawsuits, as telling people which one is wrong reduces possible outcomes
-        
-        const token = signToken(user)
-        //sends this back to the user
-        res.json({
-            data:{
-                token,
-                user:{id: user._id, name: user.name, email: user.email, role: user.role},
-                what:{stuff: "Successful Admin Login"}
-            }
-        })
-    }catch(err){
+        res.json({data:deleted})
+    } catch (err) {
         next(err)
     }
 }
+
 //Change this to work for our things
-module.exports = {adminLogin}
+module.exports = {deleteProductAsAdmin, getAllProducts, deleteUser, getAllUsers}
