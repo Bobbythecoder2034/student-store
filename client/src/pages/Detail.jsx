@@ -1,8 +1,49 @@
-import React from 'react'
+import {useParams} from 'react-router-dom'
+import {useState, useEffect} from 'react'
 
-const Detail = () => {
+const Detail = () =>{
+    const {slug} = useParams()
+    const [product, setProduct] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() =>{
+        // Fetch product by slug
+        fetchProduct(slug)
+    }, [slug])
+
+    const fetchProduct = async (slug) =>{
+        try{
+            const response = await fetch(`/api/products/${slug}`)
+            const data = await response.json()
+            setProduct(data)
+        }catch(err){
+            console.error('Error fetching product:', err)
+        }finally{
+            setLoading(false)
+        }
+    }
+
+    if (loading) return <div>Loading...</div>
+    if (!product) return <div>Product not found</div>
+
     return (
-        <div>Detail</div>
+        <div className="product-detail">
+            <div className="product-image">
+                <img src={product.image} alt={product.name}/>
+            </div>
+            <div className="product-info">
+                <h1>{product.name}</h1>
+                <p className="price">${product.price}</p>
+                <p className="category">Category: {product.category}</p>
+                <div className="tags">
+                    {product.tags ?.map(tag => <span key={tag}>{tag}</span>)}
+                </div>
+                <div className="stock-status">
+                    {product.inStock ? <span className="in-stock">In Stock</span> : <span className="out-of-stock">Out of Stock</span>}
+                </div>
+                <button className="request-btn">Request this item</button>
+            </div>
+        </div>
     )
 }
 

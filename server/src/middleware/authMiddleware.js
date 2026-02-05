@@ -14,7 +14,6 @@ function requireAuth(req,res,next) {
         const authHeader = req.headers.authorization || ""
         const [scheme, token] = authHeader.split(" ")
 
-
         if(scheme !== "Bearer" || !token){
             return res.status(404).json({error:"Missing or invalid Authorization Header"})
         }
