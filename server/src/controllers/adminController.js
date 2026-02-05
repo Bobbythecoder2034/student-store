@@ -7,9 +7,21 @@
  * -requireAuth
  * -requireAdmin
  */
+const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const User = require('../models/User')
-const Course = require('../models/Course')
+const CustomOrder = require('../models/CustomOrder')
 
+
+function signToken(user){
+    //JWT best practices: use 'sub' for subject (user id)
+    return jwt.sign(
+        {email:user.email, name:user.name,},
+        process.env.JWT_SECRET,
+        {subject:String(user._id), expiresIn: process.env.JWT_EXPIRES_IN || '7d'}
+    )
+    
+}
 
 //GET /api/admin/users
 async function getAllUsers(req, res, next){
@@ -53,4 +65,16 @@ async function getAllProducts(req,res,next){
         next(error)
     }
 }
+async function deleteProductAsAdmin(req,res,next) {
+    try {
+        const deleted = await Product.findByIdAndDelete(req.params.id)
+        if(!deleted) return res.status(404).json({error:"Course not found"})
+
+        res.json({data:deleted})
+    } catch (err) {
+        next(err)
+    }
+}
+
 //Change this to work for our things
+module.exports = {deleteProductAsAdmin, getAllProducts, deleteUser, getAllUsers}

@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound.jsx'
 import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
 import Order from './pages/CustomOrder.jsx'
+import './styles/css/style.css'
 
 const mockData = [{"id":1,"name":"Janelle","slug":"jblakeslee0","description":"id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc","price":299.99,"inStock":true,"featured":false},
 {"id":2,"name":"Thorstein","slug":"tlaban1","description":"blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat","price":59.99,"inStock":false,"featured":true},
@@ -26,8 +27,7 @@ const mockData = [{"id":1,"name":"Janelle","slug":"jblakeslee0","description":"i
 const App = () => {
     return (
       <div className="app">
-        <Navbar/>
-      
+              
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/>
