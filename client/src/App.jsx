@@ -13,8 +13,7 @@ import './styles/css/style.css'
 const App = () => {
     return (
       <div className="app">
-        <Navbar/>
-      
+              
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/>
