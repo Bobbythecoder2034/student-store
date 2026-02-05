@@ -19,7 +19,7 @@ const Products = ({products}) => {
     
     const handleFilter = (e) => {
 
-        setSearch(e.target.value)
+        setFilter(e.target.value)
 
     }
     
@@ -32,10 +32,10 @@ const Products = ({products}) => {
                 <form onSubmit={e => e.preventDefault()}>
                     <input placeholder='search' value={search} onChange={handleSearch}/>
 
-                    <br /><select name="sort" onChange={handleFilter} >'miniatures', 'prototypes', 'functional-parts', 'decorative', 'toys', 'organizers'
+                    <br /><select name="sort" onChange={handleFilter} >
                         <option value="miniatures">miniatures</option>
                         <option value="prototypes">prototypes</option>
-                        <option value="functional-parts">functional-parts</option>
+                        <option value="functional-parts">functional parts</option>
                         <option value="decorative">decorative</option>
                         <option value="toys">toys</option>
                         <option value="organizers">organizers</option>

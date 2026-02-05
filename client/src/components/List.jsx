@@ -31,20 +31,10 @@ const List = ({products, filters, isSearch, search}) =>
                                 />)
 
 
-                        }): typeof(filters)==="Array"?products.filter((product)=>{
-                                filters.foreach((filter)=>{
-                                        if(product.category === filter)
-                                        {
+                        }): typeof(filters)===String?products.filter((product)=>{product.category === filter}).map((product) => {
 
-                                                <SingleProduct 
+                                console.log(product)
 
-                                                        key={product.id}
-                                                        {...product}
-                                        
-                                                />
-
-                                        }       
-                                })
                         }):products.map((product)=>{
 
                                 return(
