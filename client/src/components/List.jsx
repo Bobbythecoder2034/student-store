@@ -14,41 +14,30 @@ const List = ({products, filters, isSearch, search}) =>
         
         return(
 
-                <div>
+               
+               
 
-                        {isSearch?products.filter((product)=>
+                
+                <>
+                {isSearch?products.filter((product)=>
                         {
 
                                 if(products.name === search)
                                 {
                                                         
-                                        <SingleProduct 
-
-                                                key={product.id}
-                                                {...product}
-                                                
-                                        />
-                                                        
+                                        <SingleProduct key={product.id} {...product}/>                                                        
                                 }
 
                         }): typeof(filters)==="Array"?products.filter((product)=>{
                                 filters.foreach((filter)=>{
                                         if(product.category === filter)
                                         {
-
-                                                <SingleProduct 
-
-                                                        key={product.id}
-                                                        {...product}
-                                        
-                                                />
-
+                                                <SingleProduct key={product.id} {...product}/>
                                         }       
                                 })
-                        }
+                        })
                 
-                <div/>
-                
+                </>
 
         )
 
