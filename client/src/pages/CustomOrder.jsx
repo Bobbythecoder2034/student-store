@@ -1,3 +1,4 @@
+import styles from '../styles/css/CustomOrder.css'
 import {useState} from 'react'
 
 const Order = () => {
@@ -29,14 +30,21 @@ const Order = () => {
     }
 
     return (
-        <div id="container">
+        <div id="container" className={styles.container}>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
-                <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required/>
-                <input type="tel" name="phone" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={formData.phone} onChange={handleChange} required/>
-                <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required/>
-                <textarea name="description" placeholder="Product Description" value={formData.description} onChange={handleChange} required/>
+                <h1 id="header">Custom Order</h1>
+                <label htmlFor="name">Name:</label>
+                    <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
+                <label htmlFor="email">Email:</label>
+                    <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required/>
+                <label htmlFor="number">Phone Number:</label>
+                    <input type="tel" name="phone" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={formData.phone} onChange={handleChange} required/>
+                <label htmlFor="address">Address</label>
+                    <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required/>
+                <label htmlFor="description">Product Description:</label>
+                    <textarea name="description" placeholder="Product Description" value={formData.description} onChange={handleChange} required/>
                 
+                <label htmlFor="color">Select Color:</label>
                 <select name="color" value={formData.color} onChange={handleChange}>
                     <option value="red">Red</option>
                     <option value="blue">Blue</option>
@@ -46,14 +54,19 @@ const Order = () => {
                     <option value="orange">Orange</option>
                 </select>
 
+                <label htmlFor="material">Select Material:</label>
                 <select name="material" value={formData.material} onChange={handleChange}>
                     <option value="Nylon">Nylon</option>
                     <option value="PLA">PLA</option>
                     <option value="ABS">ABS</option>
                 </select>
 
-                <input type="text" name="size" placeholder="Size" value={formData.size} onChange={handleChange} required/>
-                <input type="file" onChange={handleFileChange} required/>
+                <label htmlFor="size">Size:</label>
+                    <input type="text" name="size" placeholder="Length, Width, Height (in centimeters)" value={formData.size} onChange={handleChange} required/>
+
+                <label htmlFor="file">3D Model File:</label>
+                    <input type="file" onChange={handleFileChange} required/>
+                    
                 <button type="submit">Submit</button>
             </form>
         </div>
