@@ -1,57 +1,57 @@
-import SingleProduct from './SingleProduct'
+// import SingleProduct from './SingleProduct'
 
-const List = ({products, filters, isSearch, search}) => 
-{
+// const List = ({products, filters, isSearch, search}) => 
+// {
 
-        if(isSearch)
-        {
+//         if(isSearch)
+//         {
 
-                const regex = new RegExp(search, 'i')
-                const found  = products.filter((product)=>{console.log(product.name.match(regex));return product.name.match(regex)})
-                console.log(search)
+//                 const regex = new RegExp(search, 'i')
+//                 const found  = products.filter((product)=>{console.log(product.name.match(regex));return product.name.match(regex)})
+//                 console.log(search)
 
-        }
+//         }
         
-        return(
+//         return(
 
-                <div>
+//                 <div>
 
-                        {isSearch?products.filter((product)=>
-                        {
+//                         {isSearch?products.filter((product)=>
+//                         {
 
-                                if(products.name === search)
-                                {
+//                                 if(products.name === search)
+//                                 {
                                                         
-                                        <SingleProduct 
+//                                         <SingleProduct 
 
-                                                key={product.id}
-                                                {...product}
+//                                                 key={product.id}
+//                                                 {...product}
                                                 
-                                        />
+//                                         />
                                                         
-                                }
+//                                 }
 
-                        }): typeof(filters)==="Array"?products.filter((product)=>{
-                                filters.foreach((filter)=>{
-                                        if(product.category === filter)
-                                        {
+//                         }): typeof(filters)==="Array"?products.filter((product)=>{
+//                                 filters.foreach((filter)=>{
+//                                         if(product.category === filter)
+//                                         {
 
-                                                <SingleProduct 
+//                                                 <SingleProduct 
 
-                                                        key={product.id}
-                                                        {...product}
+//                                                         key={product.id}
+//                                                         {...product}
                                         
-                                                />
+//                                                 />
 
-                                        }       
-                                })
-                        }
+//                                         }       
+//                                 })
+//                         }
                 
-                <div/>
+//                 <div/>
                 
 
-        )
+//         )
 
-}
+// }
 
-export default List
+// export default List

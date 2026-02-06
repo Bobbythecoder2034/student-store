@@ -6,8 +6,21 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { LuSparkles } from "react-icons/lu";
 import { FaClipboardList } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import Featured from "../components/featured";
 
 const Home = () => {
+
+
+  const findFeatured = async () => {
+    let yab = await fetch('http://localhost:5000/api/public/products')
+    // const featuredProducts = yab.filter((x) => x.featured == true)
+     yab = [await yab.json()]
+     const featured = yab.filter((x) => x.featured == 'true')   
+     console.log(yab) 
+}
+findFeatured()
+
   return (
     <>
       <div className="layout">
@@ -43,7 +56,7 @@ const Home = () => {
           </div>
           <div className="shop-custom">
             {" "}
-            <p>Custom Order</p> <FaWandMagicSparkles />
+            <Link to={'/custom-order'}>Custom Order</Link> <FaWandMagicSparkles />
           </div>
 
           <div className="info-blurb info-blurb-one">
@@ -102,61 +115,14 @@ const Home = () => {
           </div>
 
           {/* Convert these cards into a component with functions that can easily have information filled out for it */}
-          <div className="featured-product featured-product-one">
-            <Grid />
-            <p className="featured-product-name">Gear Keychain</p>
-            <p className="featured-product-price">$6</p>
-            <p className="featured-product-category">Keychains</p>
-            <div className="buzzword buzzword-one">PETG</div>
-            <div className="buzzword-two buzzword">Durable</div>
-            <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Gear Keychain'} price={'$6'} category={'Keychains'} buzzwordOne={'Durable'} buzzwordTwo={'clean'} order={1}/>
 
-          <div className="featured-product featured-product-two">
-            <Grid />
-            <p className="featured-product-name">Mini Planter</p>
-            <p className="featured-product-price">$10</p>
-            <p className="featured-product-category">Decor</p>
-            <div className="buzzword buzzword-one">PLA</div>
-            <div className="buzzword-two buzzword">Clean</div>
-            <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Mini Planter'} price={'$10'} category={'Decor'} buzzwordOne={'PLA'} buzzwordTwo={'Clean'} order={2}/>
 
-          <div className="featured-product featured-product-three">
-            <Grid />
-            <p className="featured-product-name">Phone Desk Stand</p>
-            <p className="featured-product-price">$12</p>
-            <p className="featured-product-category">Desk</p>
-            <div className="buzzword buzzword-one">PLA</div>
-            <div className="buzzword-two buzzword">Matte</div>
-            <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Cable Clip Set'} price={'$8'} category={'Organization'} buzzwordOne={'PETG'} buzzwordTwo={'Durable'} order={3}/>
 
-          <div className="featured-product featured-product-four">
-            <Grid />
-            <p className="featured-product-name">Cable Clip Set</p>
-            <p className="featured-product-price">$8</p>
-            <p className="featured-product-category">Organization</p>
-            <div className="buzzword buzzword-one">PETG</div>
-            <div className="buzzword-two buzzword">Durable</div>
-            <div className="no-stock buzzword-three buzzword">Out of stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Phone Desk Stand'} price={'$12'} category={'Desk'} buzzwordOne={'PLA'} buzzwordTwo={'Matte'} order={4}/>
+
         </div>
 
         <div className="testimonial">
@@ -232,5 +198,7 @@ const Home = () => {
     </>
   );
 };
+
+
 
 export default Home;

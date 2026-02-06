@@ -1,4 +1,5 @@
 import {NavLink} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar(){
 
@@ -17,7 +18,7 @@ export default function Navbar(){
 
             <div className="nav-interaction">
                 <button className='nav-products'>Products</button>
-                <button className="nav-custom">Custom Print</button>
+                <button className="nav-custom"><Link to={'/custom-order'}>Custom Print</Link></button>
             </div>
         </div>
         

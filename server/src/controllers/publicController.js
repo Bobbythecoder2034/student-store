@@ -11,7 +11,7 @@ const getProducts = async (req, res, next) => {
         }
         res.json(products)
     } catch (error) {
-        res.status(404).json({message: 'nope'})
+        res.status(404).json({message: error})
     }
 }
 
