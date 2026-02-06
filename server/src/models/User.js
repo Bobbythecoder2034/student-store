@@ -4,8 +4,9 @@ const customSchema = new mongoose.Schema({
 
         name:{type:String, required:true, trim:true, maclength:80},
         email:{type:String, required:true, unique:true, lowercase:true, trim:true},
-        passwordHash:{type:String, required:true},
-        role:{type:String, enum:["user","admin"], default:"user"}
+        address:{type:String, required:true, unique:true, lowercase:true, trim:true},
+        passwordHash:{type:String, required:true, },
+        role:{type:String, required: true, Enum:["admin","user"]}
         
 },{timestamps:true})// timestamps
 
