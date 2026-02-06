@@ -35,6 +35,19 @@ const List = ({products, filters, isSearch, search}) =>
 
                                 // console.log(product)
 
+                                return(
+                                
+                                        <SingleProduct 
+                                        
+                                                key={product.id} 
+                                                name={product.name} 
+                                                description={product.description} 
+                                                {...product}
+                                        
+                                        />
+                                        
+                                )
+
                         }):products.map((product)=>{
 
                                 return(
