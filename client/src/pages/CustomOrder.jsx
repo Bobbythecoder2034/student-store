@@ -32,6 +32,7 @@ const Order = () => {
     return (
         <div id="container" className={styles.container}>
             <form onSubmit={handleSubmit}>
+                <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
                 <label htmlFor="email">Email:</label>
@@ -61,7 +62,7 @@ const Order = () => {
                 </select>
 
                 <label htmlFor="size">Size:</label>
-                    <input type="text" name="size" placeholder="Length, Width, Height" value={formData.size} onChange={handleChange} required/>
+                    <input type="text" name="size" placeholder="Length, Width, Height (in centimeters)" value={formData.size} onChange={handleChange} required/>
 
                 <label htmlFor="file">3D Model File:</label>
                     <input type="file" onChange={handleFileChange} required/>
