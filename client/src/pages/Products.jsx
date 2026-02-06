@@ -2,8 +2,6 @@ import {useState, useEffect} from 'react'
 import List from '../components/List'
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
-import publicController, { getProducts } from '../../../server/src/controllers/publicController';
-const products = getProducts()
 const Products = ({products}) => {
 
     const [search, setSearch] = useState('')

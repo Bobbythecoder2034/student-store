@@ -15,9 +15,9 @@ const Home = () => {
   const findFeatured = async () => {
     let yab = await fetch('http://localhost:5000/api/public/products')
     // const featuredProducts = yab.filter((x) => x.featured == true)
-     yab = [await yab.json()]
-     const featured = yab.filter((x) => x.featured == 'true')   
-     console.log(yab) 
+     yab = await yab.json()
+     const featured = yab.filter((x) => x.featured == true)   
+     console.log(featured) 
 }
 findFeatured()
 
@@ -115,6 +115,7 @@ findFeatured()
           </div>
 
           {/* Convert these cards into a component with functions that can easily have information filled out for it */}
+
           <Featured name={'Gear Keychain'} price={'$6'} category={'Keychains'} buzzwordOne={'Durable'} buzzwordTwo={'clean'} order={1}/>
 
           <Featured name={'Mini Planter'} price={'$10'} category={'Decor'} buzzwordOne={'PLA'} buzzwordTwo={'Clean'} order={2}/>
