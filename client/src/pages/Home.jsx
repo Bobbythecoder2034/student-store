@@ -9,6 +9,7 @@ import { PiStudentBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import Featured from "../components/featured";
 
+
 const Home = () => {
 
 
