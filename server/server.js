@@ -36,7 +36,7 @@ app.use('/api/admin', adminRoutes)
 app.use(errorHandler)
 
 // Test
-app.use('/', (req, res, next) => {res.send("You a bum")})
+app.use('/', (req, res, next) => {res.redirect('http://localhost:3000/products')})
 
 const PORT = process.env.PORT || 5000
 
