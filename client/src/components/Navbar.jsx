@@ -18,8 +18,13 @@ export default function Navbar(){
 
             <div className="nav-interaction">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 <button className='nav-products'>Products</button>
                 <button className="nav-custom"><Link to={'/custom-order'}>Custom Print</Link></button>
+=======
+                <NavLink className='nav-products' to={'/products'}>Products</NavLink>
+                <NavLink className="nav-custom" to={'/detail'}>Custom Print</NavLink>
+>>>>>>> Stashed changes
 =======
                 <NavLink className='nav-products' to={'/products'}>Products</NavLink>
                 <NavLink className="nav-custom" to={'/detail'}>Custom Print</NavLink>

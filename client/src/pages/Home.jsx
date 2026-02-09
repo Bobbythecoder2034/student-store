@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Featured from "../components/featured";
 
 
+
 const Home = () => {
 
 
