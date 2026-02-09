@@ -24,6 +24,23 @@ import { PiStudentBold } from "react-icons/pi";
 // featured
 // true
 
+// _id
+// 697d16e7e0945a7ece358dbd
+// name
+// "Sawyer"
+// slug
+// "https://cornell.edu/vitae/nisl/aenean.aspx?accumsan=dignissim&felis=ve…"
+// description
+// "Quick oatmeal cups with banana and nut flavor, great for breakfast."
+// price
+// 2.99
+// category
+// "Food - Breakfast"
+// inStock
+// true
+// featured
+// true
+
 const Home = () => {
   const createFeatured = (arr) => {
     let featuredArray = [];
