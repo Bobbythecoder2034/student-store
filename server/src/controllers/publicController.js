@@ -18,7 +18,7 @@ const getProducts = async (req, res, next) => {
 // GET /api/public/customs (Filter/Search)
 const getCustom = async (req, res, next) => {
     try {
-        const customs = await Custom.find({})
+        const customs = await CustomOrder.find({})
         if(!customs){
             res.status(404).json({message: 'There are no customs'})
         }
@@ -39,7 +39,7 @@ const createCustom = async (req, res, next) => {
             res.status(404).json({message: 'Missing information'})
         }
         
-        const customs = await Custom.create(incomingCustoms)
+        const customs = await CustomOrder.create(incomingCustoms)
     } catch (error) {
         next(error)
     }

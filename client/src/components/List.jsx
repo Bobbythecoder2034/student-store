@@ -1,74 +1,73 @@
-// // import SingleProduct from './SingleProduct'
+import SingleProduct from './SingleProduct'
 
-// // const List = ({products, filters, isSearch, search}) => 
-// // {
+const List = ({products, filters, isSearch, search}) => 
+{
 
         
 
-//         if(isSearch)
-//         {
+        if(isSearch)
+        {
 
-//                 console.log(search)
-                
+                console.log(search) 
 
-// //         }
+        }
         
-// //         return(
+        return(
 
-//                 <div>
-//                         {/* {search} */}
-//                         <br />
-//                         <br />
-//                         {isSearch?products.filter((product)=> product.name.match(new RegExp(search, 'i')) !== null).map((product)=>{
+                <div>
+                     
+                        <br />
+                        <br />
+                        {isSearch?products.filter((product)=> product.name.match(new RegExp(search, 'i')) !== null).map((product)=>{
                                 
-//                                 return ( <SingleProduct
+                                return ( <SingleProduct
                                             
-//                                         key={product.id} 
-//                                         name={product.name} 
-//                                         description={product.description} 
-//                                         {...product}
+                                        key={product.id} 
+                                        name={product.name} 
+                                        description={product.description} 
+                                        {...product}
 
-//                                 />)
+                                />)
 
 
-//                         }): typeof(filters)===String?products.filter((product)=>{product.category === filters}).map((product) => {
+                        }): typeof(filters)===String?products.filter((product)=>{product.category === filters}).map((product) => {
 
-//                                 // console.log(product)
+                                // console.log(product)
 
-//                                 return(
+                                return(
                                 
-//                                         <SingleProduct 
+                                        <SingleProduct 
                                         
-//                                                 key={product.id} 
-//                                                 name={product.name} 
-//                                                 description={product.description} 
-//                                                 {...product}
+                                                key={product.id} 
+                                                name={product.name} 
+                                                description={product.description} 
+                                                {...product}
                                         
-//                                         />
+                                        />
                                         
-//                                 )
+                                )
 
-//                         }):products.map((product)=>{
+                        }):products.map((product)=>{
 
-//                                 return(
+                                return(
                                 
-//                                         <SingleProduct 
+                                        <SingleProduct 
                                         
-//                                                 key={product.id} 
-//                                                 name={product.name} 
-//                                                 description={product.description} 
-//                                                 {...product}
+                                                key={product.id} 
+                                                name={product.name} 
+                                                description={product.description} 
+                                                {...product}
                                         
-//                                         />
+                                        />
                                         
-//                                 )
+                                )
                                 
-//                         })}
+                        })}
                         
-//                 </div>
+                </div>
 
-// //         )
+        )
 
-// // }
+}
 
-// // export default List
+export default List

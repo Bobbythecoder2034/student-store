@@ -10,7 +10,8 @@ const Products = () => {
     const [isSearch, setIsSearch] = useState(false)
     const [filter, setFilter] = useState([])
     const [load, setLoad] = useState(0)
-    
+    const [items, setItems] = useState([])
+
     const handleSearch = (e) => {
 
         setIsSearch(true)
@@ -19,12 +20,10 @@ const Products = () => {
     }
     
     const handleFilter = (e) => {
-
         setFilter(e.target.value)
-
     }
     
-    const [items, setItems] = useState([])
+    
 
     useEffect(async () => {
         const result = await fetch('http://localhost:5000/api/public/products')
@@ -37,7 +36,7 @@ const Products = () => {
     return(
         <div> 
             <input type="text" id='searchText' />
-            <form onSubmit={e => e.preventDefault()}>
+            <form onSubmit={e => e.preventDefault()} >
                 <input placeholder='search' value={search} onChange={handleSearch}/>
                 <br />
                 <select name="sort" onChange={handleFilter} >
