@@ -16,7 +16,8 @@ const productSchema = new mongoose.Schema(
         price: {type: Number, required: true},
         category: {type: String, enum: ['miniatures', 'prototypes', 'functional-parts', 'decorative', 'toys', 'organizers'], default: 'miniatures'},
         inStock: {type: Boolean, default: true},
-        featured: {type: Boolean, default: true}
+        featured: {type: Boolean, default: true},
+        img:{type:String,default:"this no have an img",}
     },
     {timestamps: true}
     
