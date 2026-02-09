@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react'
 import List from '../components/List'
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
-import publicController, { getProducts } from '../../../server/src/controllers/publicController';
-const products = getProducts()
+
+
 const Products = ({products}) => {
 
     const [search, setSearch] = useState('')
@@ -23,11 +23,8 @@ const Products = ({products}) => {
         setFilter(e.target.value)
 
     }
-    
-
-    return (
-    
-
+    const reload = () =>{
+        return(
             <div> 
                 <input type="text" id='searchText' />
                 <form onSubmit={e => e.preventDefault()}>
@@ -50,7 +47,7 @@ const Products = ({products}) => {
 
                         <div>
                             
-                            <List products={products} isSearch={isSearch} search={search} filters={filter}/>
+                            <List products={items} isSearch={isSearch} search={search} filters={filter}/>
 
                         </div>
 
@@ -58,10 +55,24 @@ const Products = ({products}) => {
                 </form>
                 
             </div>
+        )
+    }
+    const [items, setItems] = useState([])
+    const retrieve = async () => {
+        const result = await fetch('http://localhost:5000/api/public/products')
+        var revised = await result.json()
+        setItems(revised)
+        console.log(items)
+    }
+    // retrieve()
 
-            
+    useEffect(() => {
+      console.log('hi')
+      reload()
+    }, [])
+    
 
-    )
+    return reload()
 }
 
 export default Products

@@ -34,7 +34,7 @@ Stock status
 “Request this item” or “Add to cart (future)”
 
 ###    Testimonials page
-*/tstimonials*
+*/testimonials*
 Shows only approved testimonials
 Submission form (name, rating, message)
 
