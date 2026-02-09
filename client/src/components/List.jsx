@@ -1,67 +1,67 @@
-import SingleProducts from './SingleProduct'
+// import SingleProducts from './SingleProduct'
 
-const List = ({products, filters, isSearch, search}) => 
-{
+// const List = ({products, filters, isSearch, search}) => 
+// {
 
-        return(
+//         return(
 
-                <div>
+//                 <div>
                 
-                        {isSearch?products.find((product)=>
-                                {
+//                         {isSearch?products.find((product)=>
+//                                 {
 
-                                        if(products.name === search)
-                                        {
+//                                         if(products.name === search)
+//                                         {
                                         
-                                                <SingleProduct 
+//                                                 <SingleProduct 
 
-                                                        key={product.id}         
-                                                        filterProducts={filters} 
-                                                        {...product}
+//                                                         key={product.id}         
+//                                                         filterProducts={filters} 
+//                                                         {...product}
                                 
-                                                />
+//                                                 />
                                         
-                                        }
+//                                         }
 
-                                })filters.length>0?products.filter((product)=>{
+//                                 })filters.length>0?products.filter((product)=>{
 
-                                        filters.foreach((filter)=>{
-                                                if(product.category === filter)
-                                                {
+//                                         filters.foreach((filter)=>{
+//                                                 if(product.category === filter)
+//                                                 {
 
-                                                        <SingleProduct 
+//                                                         <SingleProduct 
 
-                                                                key={product.id}         
-                                                                filterProducts={filters} 
-                                                                {...product}
+//                                                                 key={product.id}         
+//                                                                 filterProducts={filters} 
+//                                                                 {...product}
                                 
-                                                        />
+//                                                         />
 
-                                                }       
-                                        })
+//                                                 }       
+//                                         })
 
-                                }):products.map((product)=>{
+//                                 }):products.map((product)=>{
                         
-                                        return(
+//                                         return(
                         
-                                                <SingleProduct 
+//                                                 <SingleProduct 
 
-                                                        key={product.id}         
-                                                        filterProducts={filters} 
-                                                        {...product}
+//                                                         key={product.id}         
+//                                                         filterProducts={filters} 
+//                                                         {...product}
                                 
-                                                />
+//                                                 />
                                 
-                                        )
+//                                         )
                         
-                                })
-                        }
+//                                 })
+//                         }
                 
-                <div/>
+//                 <div/>
                 
 
-        )
+//         )
 
-}
+// }
 
-export default List
+// export default List

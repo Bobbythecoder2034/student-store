@@ -7,7 +7,45 @@ import { LuSparkles } from "react-icons/lu";
 import { FaClipboardList } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
 
+// _id
+// 697d16e7e0945a7ece358dbd
+// name
+// "Sawyer"
+// slug
+// "https://cornell.edu/vitae/nisl/aenean.aspx?accumsan=dignissim&felis=ve…"
+// description
+// "Quick oatmeal cups with banana and nut flavor, great for breakfast."
+// price
+// 2.99
+// category
+// "Food - Breakfast"
+// inStock
+// true
+// featured
+// true
+
 const Home = () => {
+  const createFeatured = (arr) => {
+    let featuredArray = [];
+    try {
+      const pack = [];
+      return pack;
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const findFeatured = async () => {
+    let yab = await fetch("http://localhost:5000/api/public/products");
+    // const featuredProducts = yab.filter((x) => x.featured == true)
+    yab = await yab.json();
+    const featured = await yab.filter((x) => x.featured == true);
+    console.log(featured);
+    featuredArray = featured;
+  };
+
+  findFeatured()
+
   return (
     <>
       <div className="layout">
@@ -43,7 +81,8 @@ const Home = () => {
           </div>
           <div className="shop-custom">
             {" "}
-            <p>Custom Order</p> <FaWandMagicSparkles />
+            <Link to={"/custom-order"}>Custom Order</Link>{" "}
+            <FaWandMagicSparkles />
           </div>
 
           <div className="info-blurb info-blurb-one">
@@ -98,7 +137,7 @@ const Home = () => {
           <div className="view-all view-all-featured">
             <p>View all</p>
 
-            <FaArrowRight/>
+            <FaArrowRight />
           </div>
 
           {/* Convert these cards into a component with functions that can easily have information filled out for it */}
@@ -116,47 +155,13 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="featured-product featured-product-two">
-            <Grid />
-            <p className="featured-product-name">Mini Planter</p>
-            <p className="featured-product-price">$10</p>
-            <p className="featured-product-category">Decor</p>
-            <div className="buzzword buzzword-one">PLA</div>
-            <div className="buzzword-two buzzword">Clean</div>
-            <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          {/* <Featured name={'Gear Keychain'} price={'$6'} category={'Keychains'} buzzwordOne={'Durable'} buzzwordTwo={'clean'} order={1}/>
 
-          <div className="featured-product featured-product-three">
-            <Grid />
-            <p className="featured-product-name">Phone Desk Stand</p>
-            <p className="featured-product-price">$12</p>
-            <p className="featured-product-category">Desk</p>
-            <div className="buzzword buzzword-one">PLA</div>
-            <div className="buzzword-two buzzword">Matte</div>
-            <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Mini Planter'} price={'$10'} category={'Decor'} buzzwordOne={'PLA'} buzzwordTwo={'Clean'} order={2}/>
 
-          <div className="featured-product featured-product-four">
-            <Grid />
-            <p className="featured-product-name">Cable Clip Set</p>
-            <p className="featured-product-price">$8</p>
-            <p className="featured-product-category">Organization</p>
-            <div className="buzzword buzzword-one">PETG</div>
-            <div className="buzzword-two buzzword">Durable</div>
-            <div className="no-stock buzzword-three buzzword">Out of stock</div>
-            <div className="featured-details">
-              <p className="view">View Detail</p>
-              <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
-          </div>
+          <Featured name={'Cable Clip Set'} price={'$8'} category={'Organization'} buzzwordOne={'PETG'} buzzwordTwo={'Durable'} order={3}/>
+
+          <Featured name={'Phone Desk Stand'} price={'$12'} category={'Desk'} buzzwordOne={'PLA'} buzzwordTwo={'Matte'} order={4}/> */}
         </div>
 
         <div className="testimonial">
@@ -199,7 +204,8 @@ const Home = () => {
                 <LuSparkles />
               </div>
               <p className="quote">
-                "Loved the custom order color options. Students were super helpful."
+                "Loved the custom order color options. Students were super
+                helpful."
               </p>
             </div>
 
@@ -214,15 +220,16 @@ const Home = () => {
                 <LuSparkles />
               </div>
               <p className="quote">
-                "Great little gifts-our club ordered a batch and everyone wanted more"
+                "Great little gifts-our club ordered a batch and everyone wanted
+                more"
               </p>
             </div>
           </div>
         </div>
 
         <footer>
-            <p className="wer">@ 2026 West-MEC Student-made prints</p>
-            <p className="admin">Admin</p>
+          <p className="wer">@ 2026 West-MEC Student-made prints</p>
+          <p className="admin">Admin</p>
         </footer>
 
         <div className="scroll" style={{ height: "30vh", opacity: "0" }}>
