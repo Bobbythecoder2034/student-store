@@ -60,7 +60,7 @@ findFeatured()
             students-designed, printed, and finished with care
           </p>
           <NavLink className="shop-products" to={'/products'}>
-            Shop Products <FaArrowRight></FaArrowRight>
+            <p>Shop Products </p> <FaArrowRight></FaArrowRight>
           </NavLink>
           <NavLink to={'/custom-order'} className="shop-custom">
           {/* <div className="shop-custom"> */}
