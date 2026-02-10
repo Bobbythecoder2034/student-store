@@ -3,10 +3,15 @@ const SingleProduct = ({name, slug, description, price, category, inStock, featu
        
         return(
 
-                <div className="product">
+                <div className="product" id={slug}>
 
-                        <h4>{name}</h4>
-                        <h4>{description}</h4>
+                        
+                        <h1>{name}</h1> 
+                        <h2>{price}</h2> 
+                        <h3>{inStock}</h3>
+                        <h4>{category}</h4>
+                        <p>{description}</p>
+
 
                 </div>
 

@@ -30,7 +30,7 @@ const List = ({products, filters, isSearch, search}) =>
                                 />)
 
 
-                        }): typeof(filters)===String?products.filter((product)=>{product.category === filters}).map((product) => {
+                        }): typeof(filters)===String?products.filter((product)=> product.category.match(new RegExp(search, 'i')) !== null).map((product) => {
 
                                 // console.log(product)
 
