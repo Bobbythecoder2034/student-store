@@ -7,7 +7,6 @@ import { LuSparkles } from "react-icons/lu";
 import { FaClipboardList } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
 import { Link } from "react-router-dom";
-import {NavLink} from "react-router-dom";
 import Featured from "../components/featured";
 
 
@@ -17,15 +16,11 @@ const Home = () => {
 
 
   const findFeatured = async () => {
-    try {
-      let yab = await fetch('http://localhost:5000/api/public/products')
-      // const featuredProducts = yab.filter((x) => x.featured == true)
-      yab = await yab.json()
-      const featured = yab.filter((x) => x.featured == true)   
-      console.log(featured) 
-    } catch (err) {
-      console.log(err)
-    }
+    let yab = await fetch('http://localhost:5000/api/public/products')
+    // const featuredProducts = yab.filter((x) => x.featured == true)
+     yab = await yab.json()
+     const featured = yab.filter((x) => x.featured == true)   
+     console.log(featured) 
 }
 findFeatured()
 
@@ -59,15 +54,13 @@ findFeatured()
             and leave a testimonial. Everything here is built by
             students-designed, printed, and finished with care
           </p>
-          <NavLink className="shop-products" to={'/products'}>
-            <p>Shop Products </p> <FaArrowRight></FaArrowRight>
-          </NavLink>
-          <NavLink to={'/custom-order'} className="shop-custom">
-          {/* <div className="shop-custom"> */}
+          <div className="shop-products">
+            <p>Shop Products</p> <FaArrowRight></FaArrowRight>
+          </div>
+          <div className="shop-custom">
             {" "}
-            Custom Order <FaWandMagicSparkles />
-          {/* </div> */}
-          </NavLink>
+            <Link to={'/custom-order'}>Custom Order</Link> <FaWandMagicSparkles />
+          </div>
 
           <div className="info-blurb info-blurb-one">
             <LuSparkles

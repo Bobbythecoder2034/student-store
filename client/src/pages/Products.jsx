@@ -40,7 +40,6 @@ const Products = () => {
                 <input placeholder='search' value={search} onChange={handleSearch}/>
                 <br />
                 <select name="sort" onChange={handleFilter} >
-                    <option value={null}>none</option>
                     <option value="miniatures">miniatures</option>
                     <option value="prototypes">prototypes</option>
                     <option value="functional-parts">functional parts</option>
