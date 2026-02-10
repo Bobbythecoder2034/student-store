@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Grid from "../components/grid";
 import { FaArrowRight } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { LuSparkles } from "react-icons/lu";
 import { FaClipboardList } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 // _id
 // 697d16e7e0945a7ece358dbd
@@ -42,26 +43,18 @@ import { PiStudentBold } from "react-icons/pi";
 // true
 
 const Home = () => {
-  const createFeatured = (arr) => {
-    let featuredArray = [];
-    try {
-      const pack = [];
-      return pack;
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const findFeatured = async () => {
     let yab = await fetch("http://localhost:5000/api/public/products");
-    // const featuredProducts = yab.filter((x) => x.featured == true)
     yab = await yab.json();
     const featured = await yab.filter((x) => x.featured == true);
     console.log(featured);
     featuredArray = featured;
   };
 
-  findFeatured()
+  useEffect(() => {
+    findFeatured()
+  }, [])
 
   return (
     <>
