@@ -1,26 +1,23 @@
 import {useState, useEffect} from 'react'
 import List from '../components/List'
-import { FaArrowUp } from "react-icons/fa";
-import { FaArrowDown } from "react-icons/fa";
 
 
 const Products = () => {
 
     const [search, setSearch] = useState('')
-    const [isSearch, setIsSearch] = useState(false)
     const [filter, setFilter] = useState([])
-    const [load, setLoad] = useState(0)
     const [items, setItems] = useState([])
 
     const handleSearch = (e) => {
 
-        setIsSearch(true)
         setSearch(e.target.value)
 
     }
     
     const handleFilter = (e) => {
+
         setFilter(e.target.value)
+
     }
     
     
@@ -34,13 +31,13 @@ const Products = () => {
     
 
     return(
-        <div> 
-            <input type="text" id='searchText' />
+        <div className='product'> 
             <form onSubmit={e => e.preventDefault()} >
-                <input placeholder='search' value={search} onChange={handleSearch}/>
-                <br />
-                <select name="sort" onChange={handleFilter} >
-                    <option value={null}>none</option>
+                
+                <input placeholder='search' value={search} onChange={handleSearch} className='search' />
+
+                <select name="sort" onChange={handleFilter} className='filter' >
+                    <option value="">none</option>
                     <option value="miniatures">miniatures</option>
                     <option value="prototypes">prototypes</option>
                     <option value="functional-parts">functional parts</option>
@@ -48,20 +45,9 @@ const Products = () => {
                     <option value="toys">toys</option>
                     <option value="organizers">organizers</option>
                 </select>
+                                                
+                <List products={items} search={search} filters={filter}/>
 
-                <br /><br /><button onClick={() => {handleFilter}}> filter </button>
-                    
-                <br /><button onClick={()=>{setIsSearch(false); setFilter(null)}}> load all </button>
-                    
-                <div>
-
-                    <div>
-                            
-                        <List products={items} isSearch={isSearch} search={search} filters={filter}/>
-
-                    </div>
-
-                </div>
             </form>
                 
         </div>
