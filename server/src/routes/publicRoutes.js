@@ -13,7 +13,6 @@ const upload = multer({
     }
 })
 
-
 const {
     getProducts,
     // SLug function
