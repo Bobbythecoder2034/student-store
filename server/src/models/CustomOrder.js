@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const customOrderSchema = new mongoose.Schema({
 
-
         // customer info (name/email/phone/address)
+
         name:{type:String, required:true, trim:true, maxlength:100},
         email:{type:String, required:true, trim:true, maxlength:100},
-        phone:{type:Number, required:true, trim:true, maxlength:100},
-        address:{type:String, required:true, trim:true, maxlength:100},
+        phone:{type:String, required:true, trim:true, maxlength:20},
+        address:{type:String, required:true, trim:true, maxlength:200},
         //Change this to a user object
 
         // description, preferences (color/material/size)
@@ -19,15 +19,15 @@ const customOrderSchema = new mongoose.Schema({
         size:{type:String, required:true, trim:true, maxlength:100},
 
         // reference file URLs + metadata
-        urls:{type:Array, required:true, trim:true, maxlength:1000},
-        metadata:{type:String, required:true, trim:true, maxlength:1000},
+        urls:{type:[String], default: []},
+        metadata:{type:String, default: ''},
 
         // status (Submitted/Reviewed/Quoted/In Progress/Completed)
-        status:{type:String,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"], default:'Pending'},
+        status:{type:String,enum:['Pending','In Progress', 'Ready', "Completed", "Cancelled"], default:'Pending'},
 
         // internal notes, assigned student/printer (optional)
-        notes:{type:String, required:false, default:'no notes', trim:true, maxlength:1000},
-        printer:{type:String, required:false, default:'terry', trim:true, maxlength:1000}
+        notes:{type:String, required:false, default:'no notes'},
+        printer:{type:String, required:false, default:'terry'}
 
         
 },{timestamps:true})// timestamps

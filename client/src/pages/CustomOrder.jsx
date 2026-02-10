@@ -41,7 +41,7 @@ const Order = () => {
         try{
             const response = await fetch('http://localhost:5000/api/public/custom-orders', {
                 method: 'POST',
-                body: formData
+                body: data
             })
             
             if(response.ok){
