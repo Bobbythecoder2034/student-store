@@ -23,46 +23,9 @@ const Order = () => {
         setFormData(prev => ({...prev, file: e.target.files[0]}))
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        
-        const data = new FormData()
-            data.append('name', formData.name)
-            data.append('email', formData.email)
-            data.append('phone', formData.phone)
-            data.append('address', formData.address)
-            data.append('description', formData.description)
-            data.append('color', formData.color)
-            data.append('material', formData.material)
-            data.append('size', formData.size)
-            data.append('file', formData.file)
-
-        
-        try{
-            const response = await fetch('http://localhost:5000/api/public/custom-orders', {
-                method: 'POST',
-                body: data
-            })
-            
-            if(response.ok){
-                alert('Order submitted successfully!')
-                setFormData({
-                    name: '', email: '', phone: '', address: '',
-                    description: '', color: 'red', material: 'Nylon',
-                    size: '', file: null
-                })
-            }else{
-                alert('Error submitting order')
-            }
-        }catch(error){
-            console.error('Error:', error)
-            alert('Failed to submit order')
-        }
-    }
-
     return (
         <div id="container" className='container'>
-            <form onSubmit={handleSubmit}>
+            <form method="POST" action='http://localhost:5000/api/public/custom-orders'>
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
@@ -93,7 +56,7 @@ const Order = () => {
                 </select>
 
                 <label htmlFor="size">Size:</label>
-                    <input type="text" name="size" placeholder="Length, Width, Height (in centimeters)" value={formData.size} onChange={handleChange} required/>
+                    <input type="text" name="size" placeholder="Length, Width, Height (in CM)" value={formData.size} onChange={handleChange} required/>
 
                 <label htmlFor="file">3D Model File:</label>
                     <input type="file" name="file" onChange={handleFileChange} required/>
