@@ -25,6 +25,7 @@ const App = () => {
             <Route path='/products' element={<Products/>}/> {/* Products link has map error */}
             <Route path='/testimonials' element={<Testimonials/>}/> {/* Only shows the word 'testimonials' along with navbar */}
             <Route path='/custom-order' element={<Order/>}/>
+            <Route path="/products/:slug" />
             <Route path="*" element={<NotFound/>}/>
           </Routes>
         </main>
