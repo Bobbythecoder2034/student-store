@@ -11,7 +11,7 @@ const getProducts = async (req, res, next) => {
         }
         res.json(products)
     } catch (error) {
-        res.status(404).json({message: 'nope'})
+        res.status(404).json({message: error})
     }
 }
 
@@ -40,6 +40,7 @@ const createCustom = async (req, res, next) => {
         }
         
         const customs = await Custom.create(incomingCustoms)
+        res.status(201).json({data:customs})
     } catch (error) {
         next(error)
     }

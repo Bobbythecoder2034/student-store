@@ -8,15 +8,14 @@ const List = ({products, filters, isSearch, search}) =>
         if(isSearch)
         {
 
-                console.log(search)
-                
+                console.log(search) 
 
         }
         
         return(
 
                 <div>
-                        {/* {search} */}
+                     
                         <br />
                         <br />
                         {isSearch?products.filter((product)=> product.name.match(new RegExp(search, 'i')) !== null).map((product)=>{

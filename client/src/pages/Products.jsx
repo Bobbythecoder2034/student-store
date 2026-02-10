@@ -2,15 +2,16 @@ import {useState, useEffect} from 'react'
 import List from '../components/List'
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
-    // import publicController, { getProducts } from '../../../server/src/controllers/publicController';
-// const products = getProducts()
-const Products = ({products}) => {
+
+
+const Products = () => {
 
     const [search, setSearch] = useState('')
     const [isSearch, setIsSearch] = useState(false)
     const [filter, setFilter] = useState([])
     const [load, setLoad] = useState(0)
-    
+    const [items, setItems] = useState([])
+
     const handleSearch = (e) => {
 
         setIsSearch(true)
@@ -19,48 +20,50 @@ const Products = ({products}) => {
     }
     
     const handleFilter = (e) => {
-
         setFilter(e.target.value)
-
     }
     
-
-    return (
     
 
-            <div> 
-                <input type="text" id='searchText' />
-                <form onSubmit={e => e.preventDefault()}>
-                    <input placeholder='search' value={search} onChange={handleSearch}/>
+    useEffect(async () => {
+        const result = await fetch('http://localhost:5000/api/public/products')
+        var revised = await result.json()
+        setItems(revised)
+        console.log(items)
+    }, [])
+    
 
-                    <br /><select name="sort" onChange={handleFilter} >
-                        <option value="miniatures">miniatures</option>
-                        <option value="prototypes">prototypes</option>
-                        <option value="functional-parts">functional parts</option>
-                        <option value="decorative">decorative</option>
-                        <option value="toys">toys</option>
-                        <option value="organizers">organizers</option>
-                    </select>
+    return(
+        <div> 
+            <input type="text" id='searchText' />
+            <form onSubmit={e => e.preventDefault()} >
+                <input placeholder='search' value={search} onChange={handleSearch}/>
+                <br />
+                <select name="sort" onChange={handleFilter} >
+                    <option value="miniatures">miniatures</option>
+                    <option value="prototypes">prototypes</option>
+                    <option value="functional-parts">functional parts</option>
+                    <option value="decorative">decorative</option>
+                    <option value="toys">toys</option>
+                    <option value="organizers">organizers</option>
+                </select>
 
-                    <br /><br /><button onClick={() => {handleFilter}}> filter </button>
+                <br /><br /><button onClick={() => {handleFilter}}> filter </button>
                     
-                    <br /><button onClick={()=>{setIsSearch(false); setFilter(null)}}> load all </button>
+                <br /><button onClick={()=>{setIsSearch(false); setFilter(null)}}> load all </button>
                     
+                <div>
+
                     <div>
-
-                        <div>
                             
-                            <List products={products} isSearch={isSearch} search={search} filters={filter}/>
-
-                        </div>
+                        <List products={items} isSearch={isSearch} search={search} filters={filter}/>
 
                     </div>
-                </form>
+
+                </div>
+            </form>
                 
-            </div>
-
-            
-
+        </div>
     )
 }
 
