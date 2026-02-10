@@ -1,4 +1,4 @@
-import styles from '../styles/css/CustomOrder.css'
+import '../styles/css/CustomOrder.css'
 import {useState} from 'react'
 
 const Order = () => {
@@ -9,7 +9,7 @@ const Order = () => {
         address: '',
         description: '',
         color: 'red',
-        material: 'PLA',
+        material: 'Nylon',
         size: '',
         file: null
     })
@@ -23,23 +23,54 @@ const Order = () => {
         setFormData(prev => ({...prev, file: e.target.files[0]}))
     }
 
-    const handleSubmit = async (e) =>{
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        // TODO: Send formData to backend
-        console.log(formData)
+        
+        const data = new FormData()
+            data.append('name', formData.name)
+            data.append('email', formData.email)
+            data.append('phone', formData.phone)
+            data.append('address', formData.address)
+            data.append('description', formData.description)
+            data.append('color', formData.color)
+            data.append('material', formData.material)
+            data.append('size', formData.size)
+            data.append('file', formData.file)
+
+        
+        try{
+            const response = await fetch('http://localhost:5000/api/public/custom-orders', {
+                method: 'POST',
+                body: formData
+            })
+            
+            if(response.ok){
+                alert('Order submitted successfully!')
+                setFormData({
+                    name: '', email: '', phone: '', address: '',
+                    description: '', color: 'red', material: 'Nylon',
+                    size: '', file: null
+                })
+            }else{
+                alert('Error submitting order')
+            }
+        }catch(error){
+            console.error('Error:', error)
+            alert('Failed to submit order')
+        }
     }
 
     return (
-        <div id="container" className={styles.container}>
+        <div id="container" className='container'>
             <form onSubmit={handleSubmit}>
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
                 <label htmlFor="email">Email:</label>
                     <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required/>
-                <label htmlFor="number">Phone Number:</label>
+                <label htmlFor="number">Phone Number: XXX-XXX-XXXX</label>
                     <input type="tel" name="phone" placeholder="XXX-XXX-XXXX" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={formData.phone} onChange={handleChange} required/>
-                <label htmlFor="address">Address</label>
+                <label htmlFor="address">Address:</label>
                     <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} required/>
                 <label htmlFor="description">Product Description:</label>
                     <textarea name="description" placeholder="Product Description" value={formData.description} onChange={handleChange} required/>
@@ -65,7 +96,7 @@ const Order = () => {
                     <input type="text" name="size" placeholder="Length, Width, Height (in centimeters)" value={formData.size} onChange={handleChange} required/>
 
                 <label htmlFor="file">3D Model File:</label>
-                    <input type="file" onChange={handleFileChange} required/>
+                    <input type="file" name="file" onChange={handleFileChange} required/>
                     
                 <button type="submit">Submit</button>
             </form>
