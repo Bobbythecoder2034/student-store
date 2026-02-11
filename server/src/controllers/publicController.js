@@ -34,14 +34,16 @@ const getCustom = async (req, res, next) => {
 // POST /api/public/custom-orders (Create's a custom order)
 const createCustom = async (req, res, next) => {
     try {
-        const incomingCustoms = req.body
-        if(!incomingCustoms){
-            res.status(404).json({message: 'Missing information'})
-        }
-        
-        const customs = await Custom.create(incomingCustoms)
-        res.status(201).json({data:customs})
-    } catch (error) {
+        const data = req.body
+        const filePath = req.file ? `/uploads/${req.file.filename}` : '' // Saves the file path to the uploaded file if it exists
+
+        const custom = await Custom.create({
+            ...data,
+            urls: filePath ? [filePath] : [], // Saves the file path in an array for potential future expansion to multiple files
+            metadata: req.file ? req.file.mimetype : '' // Optionally saves the file type for reference
+        })
+        res.status(201).json({data:custom})
+    }catch(error){
         next(error)
     }
 }
