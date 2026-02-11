@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from "react";
+import {useState, useEffect} from 'react'
 import Navbar from "../components/Navbar";
 import Grid from "../components/grid";
 import { FaArrowRight } from "react-icons/fa";
@@ -13,16 +14,28 @@ import Featured from "../components/featured";
 
 
 const Home = () => {
-
-
+  const [featured, setFeatured] = useState([])
+  let count = 0
   const findFeatured = async () => {
     let yab = await fetch('http://localhost:5000/api/public/products')
     // const featuredProducts = yab.filter((x) => x.featured == true)
-     yab = await yab.json()
-     const featured = yab.filter((x) => x.featured == true)   
-     console.log(featured) 
+    yab = await yab.json()
+    let featured = yab.filter((x) => x.featured == true)
+    let random = Math.floor((Math.random() * (featured.length-4))+1)
+    featured = featured.splice(random,4)
+    console.log(featured) 
+    return featured
+    
 }
-findFeatured()
+useEffect( () => {
+  async function doStuff() {
+    var stuff = await findFeatured()
+    console.log(typeof stuff)
+    setFeatured(stuff)
+  }
+  doStuff()
+}, [])
+
 
   return (
     <>
@@ -112,20 +125,20 @@ findFeatured()
           </p>
 
           <div className="view-all view-all-featured">
-            <p>View all</p>
+            <Link to={'/products'}>View All</Link>
 
             <FaArrowRight/>
           </div>
 
           {/* Convert these cards into a component with functions that can easily have information filled out for it */}
-
-          <Featured name={'Gear Keychain'} price={'$6'} category={'Keychains'} buzzwordOne={'Durable'} buzzwordTwo={'clean'} order={1}/>
-
-          <Featured name={'Mini Planter'} price={'$10'} category={'Decor'} buzzwordOne={'PLA'} buzzwordTwo={'Clean'} order={2}/>
-
-          <Featured name={'Cable Clip Set'} price={'$8'} category={'Organization'} buzzwordOne={'PETG'} buzzwordTwo={'Durable'} order={3}/>
-
-          <Featured name={'Phone Desk Stand'} price={'$12'} category={'Desk'} buzzwordOne={'PLA'} buzzwordTwo={'Matte'} order={4}/>
+            
+            {featured.map((x)=>{
+              count++
+              return <Featured key={x._id} name={x.name} category={x.category} buzzwordOne={x.slug} buzzwordTwo={x.slug} order={count} id={x.id}/>
+            })}
+         
+          
+          {/*  */}
 
         </div>
 
@@ -137,7 +150,7 @@ findFeatured()
           </p>
 
           <div className="view-all">
-            <p>See All</p>
+            <Link to={'/testimonials'}>See All</Link>
             <FaArrowRight />
           </div>
 
