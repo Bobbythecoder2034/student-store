@@ -1,12 +1,12 @@
 import {NavLink} from "react-router-dom";
 
 
-const SingleProduct = ({name, slug, description, price, category, inStock, featured}) =>
+const SingleProduct = ({id, name, slug, description, price, category, inStock, featured}) =>
 {
        
         return(
 
-                <NavLink className="product" id={slug} to={'/detail'} >
+                <NavLink className="product" id={id} to={`/product/:${id}`} >
 
                         
                         <h1 className="SP-name">{name}</h1> 

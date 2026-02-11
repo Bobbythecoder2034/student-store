@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import List from '../components/List'
+import Navbar from "../components/Navbar";
 
 
 const Products = () => {
@@ -26,14 +27,14 @@ const Products = () => {
         const result = await fetch('http://localhost:5000/api/public/products')
         var revised = await result.json()
         setItems(revised)
-        console.log(items)
+        
     }, [])
     
 
     return(
         <div className='product'> 
-            <form onSubmit={e => e.preventDefault()} >
-                
+            {/* <form onSubmit={e => e.preventDefault()} > */}
+            <form>
                 <input placeholder='search' value={search} onChange={handleSearch} className='search' />
 
                 <select name="sort" onChange={handleFilter} className='filter' >
