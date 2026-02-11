@@ -2,6 +2,7 @@ const Product = require('../models/Product')
 const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
 
+
 // GET /api/public/products (Filter/Search)
 const getProducts = async (req, res, next) => {
     try {
@@ -31,20 +32,38 @@ const getCustom = async (req, res, next) => {
 // GET /api/public/products/by-slug?slug=...  To-Do
 
 
-// POST /api/public/custom-orders (Create's a custom order)
-const createCustom = async (req, res, next) => {
+// POST /api/public/custom-orders (Creates a custom order)
+const createCustom = async (req, res, next) =>{
     try {
         const data = req.body
-        const filePath = req.file ? `/uploads/${req.file.filename}` : '' // Saves the file path to the uploaded file if it exists
 
-        const custom = await Custom.create({
-            ...data,
-            urls: filePath ? [filePath] : [], // Saves the file path in an array for potential future expansion to multiple files
-            metadata: req.file ? req.file.mimetype : '' // Optionally saves the file type for reference
-        })
-        res.status(201).json({data:custom})
-    }catch(error){
-        next(error)
+        if(!data){
+            res.status(404).json({message:'Missing information'})
+        }
+
+        const custom = await Custom.create(data)
+        res.status(201).json({custom})
+    } catch (error) {
+        res.status(400).json({message: error})
+    }
+}
+
+// POST /api/public/custom-orders/file (Handles file uploads for custom orders)
+const createCustomFile = async (req, res, next) =>{
+    try{
+        if(!req.file){
+            return res.status(400).send('No file uploaded')
+        }
+        const newFile = new FileModel({
+            filename: req.file.originalname,
+            contentType: req.file.mimetype,
+            data: req.file.buffer // Access the buffer from req.file
+        });
+
+        await newFile.save();
+        res.status(200).send('File uploaded successfully!');
+    }catch(err){
+        next(err)
     }
 }
 
@@ -75,4 +94,4 @@ const createTestimonial = async (req, res, next) => {
     }
 }
 
-module.exports = {getProducts, getCustom, createCustom, getTestimonial, createTestimonial}
+module.exports = {getProducts, getCustom, createCustom, createCustomFile, getTestimonial, createTestimonial}

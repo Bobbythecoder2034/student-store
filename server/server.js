@@ -36,7 +36,6 @@ app.get('/api/health', (req,res)=> res.json({ok:true}))
 app.use('/api/auth', authRoutes)
 app.use('/api/public', publicRoutes)
 app.use('/api/admin', adminRoutes)
-app.use('/uploads', express.static('uploads')) // Serves uploaded files from the uploads folder
 
 
 //Error middleware goes last
