@@ -19,7 +19,7 @@ const getProducts = async (req, res, next) => {
 const getProductById = async (req, res, next) => {
     try {
         const targetId = req.params.id
-        const product = await Product.findById({id})
+        const product = await Product.findOne({_id:targetId, owner: targetId})
         if(!product){
             res.status(404).json({message: 'There is no product'})
         }
