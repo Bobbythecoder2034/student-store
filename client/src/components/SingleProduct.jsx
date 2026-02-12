@@ -6,7 +6,7 @@ const SingleProduct = ({id, name, slug, description, price, category, inStock, f
        
         return(
 
-                <NavLink className="product" id={id} to={`/product/:${id}`} >
+                <NavLink className="product" id={id} to={`/product/:id`}>
 
                         
                         <h1 className="SP-name">{name}</h1> 
