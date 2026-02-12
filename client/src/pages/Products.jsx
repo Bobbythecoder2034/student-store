@@ -31,7 +31,7 @@ const Products = () => {
     
 
     return(
-        <div className='product'> 
+        <div className='product layout'> 
             <form onSubmit={e => e.preventDefault()} >
                 
                 <input placeholder='search' value={search} onChange={handleSearch} className='search' />
