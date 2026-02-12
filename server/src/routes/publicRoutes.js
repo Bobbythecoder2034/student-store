@@ -9,7 +9,6 @@ const {
     getProducts,
     // SLug function
     createCustom,
-    createCustomFile,
     getCustom,
     getTestimonial,
     createTestimonial
@@ -18,8 +17,7 @@ const {
 router.get('/products', getProducts)
 // router.get('/products/by-slug', getProducts) Fill when slug funciton is completed
 router.get('/customs', getCustom)
-router.post('/custom-orders', createCustom)
-router.post('/custom-orders/file', upload.single('file'), createCustomFile) // Endpoint for file uploads
+router.post('/custom-orders', upload.single('file'), createCustom)
 router.get('/testimonials', getTestimonial)
 router.post('/testimonials', createTestimonial)
 
