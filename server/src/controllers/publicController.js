@@ -34,36 +34,21 @@ const getCustom = async (req, res, next) => {
 
 // POST /api/public/custom-orders (Creates a custom order)
 const createCustom = async (req, res, next) =>{
-    try {
-        const data = req.body
-
-        if(!data){
-            res.status(404).json({message:'Missing information'})
-        }
-
-        const custom = await Custom.create(data)
-        res.status(201).json({custom})
-    } catch (error) {
-        res.status(400).json({message: error})
-    }
-}
-
-// POST /api/public/custom-orders/file (Handles file uploads for custom orders)
-const createCustomFile = async (req, res, next) =>{
     try{
-        if(!req.file){
-            return res.status(400).send('No file uploaded')
-        }
-        const newFile = new FileModel({
-            filename: req.file.originalname,
-            contentType: req.file.mimetype,
-            data: req.file.buffer // Access the buffer from req.file
-        });
+        console.log("Body:", req.body)
+        console.log("File:", req.file)
 
-        await newFile.save();
-        res.status(200).send('File uploaded successfully!');
+        const custom = await Custom.create({
+            ...req.body,
+            file: req.file ? {
+                data: req.file.buffer,
+                contentType: req.file.mimetype,
+            } : undefined
+        })
+
+        res.status(201).json({id: custom._id, message: 'Custom order created successfully'})
     }catch(err){
-        next(err)
+        res.status(400).json({message: err})
     }
 }
 
@@ -94,4 +79,4 @@ const createTestimonial = async (req, res, next) => {
     }
 }
 
-module.exports = {getProducts, getCustom, createCustom, createCustomFile, getTestimonial, createTestimonial}
+module.exports = {getProducts, getCustom, createCustom, getTestimonial, createTestimonial}

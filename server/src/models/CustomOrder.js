@@ -25,6 +25,8 @@ const customOrderSchema = new mongoose.Schema({
         // status (Submitted/Reviewed/Quoted/In Progress/Completed)
         status:{type:String,enum:['Pending','In Progress', 'Ready', "Completed", "Cancelled"], default:'Pending'},
 
+        file: {data: Buffer, contentType: String}, // Store file as binary data with its MIME type
+
         // internal notes, assigned student/printer (optional)
         notes:{type:String, required:false, default:'no notes'},
         printer:{type:String, required:false, default:'terry'}
