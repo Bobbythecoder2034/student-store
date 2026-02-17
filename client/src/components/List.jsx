@@ -19,7 +19,6 @@ const List = ({products, filters, search}) =>
 
                                 />)
 
-
                         })}
                         
                 </div>

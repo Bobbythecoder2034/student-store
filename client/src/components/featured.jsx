@@ -3,7 +3,7 @@ import Grid from './grid'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
 
-const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order}) => {
+const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order, id}) => {
   const link = name.replaceAll(' ', '-').toLowerCase()
   var position = null
   if(!order){
@@ -33,7 +33,7 @@ const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order}) => {
             <div className="buzzword-two buzzword">{buzzwordTwo}</div>
             <div className="in-stock buzzword-three buzzword">In stock</div>
             <div className="featured-details">
-              <p className="view"><Link to={`/${link}`}> View Detail</Link></p>
+              <p className="view"><Link to={`/${id}`}> View Detail</Link></p>
               <FaArrowRight style={{ fontSize: "small" }} />
             </div>
           </div>  )

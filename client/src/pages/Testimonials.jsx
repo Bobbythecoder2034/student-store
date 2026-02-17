@@ -3,29 +3,32 @@ import {useEffect, useState} from 'react'
 const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([])
     const [loading, setLoading] = useState(true)
-
-    useEffect(() => {
-        fetchTestimonials()
+    const [items, setItems] = useState([])
+    useEffect(async () => {
+        const result = await fetch('http://localhost:5000/api/public/testimonials')
+        var revised = await result.json()
+        setItems(revised)
+        console.log(items)
     }, [])
 
-    const fetchTestimonials = async () => {
-        try{
-            const response = await fetch('/api/testimonials')
-            const data = await response.json()
-            setTestimonials(data)
-            setLoading(false)
-        }catch (err){
-            console.error('Error fetching testimonials:', err)
-            setLoading(false)
-        }
-    }
+    // const fetchTestimonials = async () => {
+    //     try{
+    //         const response = await fetch('/api/testimonials')
+    //         const data = await response.json()
+    //         setTestimonials(data)
+    //         setLoading(false)
+    //     }catch (err){
+    //         console.error('Error fetching testimonials:', err)
+    //         setLoading(false)
+    //     }
+    // }
 
-    if(loading) return <div>Loading...</div>
+    
 
     return (
         <div>
             <h2>Testimonials</h2>
-            {testimonials.map((testimonial) => (
+            {items.map((testimonial) => (
                 <div key={testimonial._id}>
                     <p><strong>{testimonial.name}</strong></p>
                     <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>

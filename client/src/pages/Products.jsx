@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import List from '../components/List'
+import {NavLink} from "react-router-dom";
 import Navbar from "../components/Navbar";
-
 
 const Products = () => {
 
@@ -20,19 +20,21 @@ const Products = () => {
         setFilter(e.target.value)
 
     }
-    
-    
-
-    useEffect(async () => {
+    async function stuff() {
         const result = await fetch('http://localhost:5000/api/public/products')
         var revised = await result.json()
         setItems(revised)
-        
+        console.log(items)
+    }
+    
+
+    useEffect(() => {
+        stuff()
     }, [])
     
 
     return(
-        <div className='product'> 
+        <div className='product layout'> 
             {/* <form onSubmit={e => e.preventDefault()} > */}
             <form>
                 <input placeholder='search' value={search} onChange={handleSearch} className='search' />

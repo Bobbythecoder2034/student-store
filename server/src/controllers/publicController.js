@@ -2,6 +2,7 @@ const Product = require('../models/Product')
 const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
 
+
 // GET /api/public/products (Filter/Search)
 const getProducts = async (req, res, next) => {
     try {
@@ -31,7 +32,7 @@ const getProductById = async (req, res, next) => {
 // GET /api/public/customs (Filter/Search)
 const getCustom = async (req, res, next) => {
     try {
-        const customs = await CustomOrder.find({})
+        const customs = await Custom.find({})
         if(!customs){
             res.status(404).json({message: 'There are no customs'})
         }
@@ -44,17 +45,38 @@ const getCustom = async (req, res, next) => {
 // GET /api/public/products/by-slug?slug=...  To-Do
 
 
-// POST /api/public/custom-orders (Create's a custom order)
-const createCustom = async (req, res, next) => {
+// POST /api/public/custom-orders (Creates a custom order)
+const createCustom = async (req, res, next) =>{
     try {
-        const incomingCustoms = req.body
-        if(!incomingCustoms){
-            res.status(404).json({message: 'Missing information'})
+        const data = req.body
+
+        if(!data){
+            res.status(404).json({message:'Missing information'})
         }
-        
-        const customs = await CustomOrder.create(incomingCustoms)
+
+        const custom = await Custom.create(data)
+        res.status(201).json({custom})
     } catch (error) {
-        next(error)
+        res.status(400).json({message: error})
+    }
+}
+
+// POST /api/public/custom-orders/file (Handles file uploads for custom orders)
+const createCustomFile = async (req, res, next) =>{
+    try{
+        if(!req.file){
+            return res.status(400).send('No file uploaded')
+        }
+        const newFile = new FileModel({
+            filename: req.file.originalname,
+            contentType: req.file.mimetype,
+            data: req.file.buffer // Access the buffer from req.file
+        });
+
+        await newFile.save();
+        res.status(200).send('File uploaded successfully!');
+    }catch(err){
+        next(err)
     }
 }
 
