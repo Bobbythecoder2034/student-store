@@ -7,11 +7,12 @@
  * -requireAuth
  * -requireAdmin
  */
+
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/User')
 const CustomOrder = require('../models/CustomOrder')
-
+const Product = require('../models/Product')
 
 function signToken(user){
     //JWT best practices: use 'sub' for subject (user id)

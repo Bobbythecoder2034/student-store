@@ -1,4 +1,4 @@
-function errorHandler(err,res,res,next){
+function errorHandler(err,req,res,next){
     console.log("API Error: ", err)
 
     //Mongoose invalid ObjectID often triggers CastError
