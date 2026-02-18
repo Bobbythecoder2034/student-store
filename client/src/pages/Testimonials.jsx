@@ -1,14 +1,18 @@
 import {useEffect, useState} from 'react'
+import Navbar from '../components/Navbar'
 
 const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([])
     const [loading, setLoading] = useState(true)
     const [items, setItems] = useState([])
-    useEffect(async () => {
+    async function stuff(params) {
         const result = await fetch('http://localhost:5000/api/public/testimonials')
         var revised = await result.json()
         setItems(revised)
-        console.log(items)
+        console.log(items) 
+    }
+    useEffect( () => {
+        stuff()
     }, [])
 
     // const fetchTestimonials = async () => {
@@ -26,7 +30,10 @@ const Testimonials = () => {
     
 
     return (
-        <div>
+        <>
+        
+        <div className='product layout'>
+            <Navbar/>
             <h2>Testimonials</h2>
             {items.map((testimonial) => (
                 <div key={testimonial._id}>
@@ -36,6 +43,8 @@ const Testimonials = () => {
                 </div>
             ))}
         </div>
+        </>
+        
     )
 }
 
