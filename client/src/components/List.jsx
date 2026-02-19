@@ -12,10 +12,8 @@ const List = ({products, filters, search}) =>
                                 
                                 return ( <SingleProduct
                                             
-                                        key={product._id} 
-                                        name={product.name} 
-                                        description={product.description} 
-                                        {...product}
+                                        key={product.id} 
+                                        product = {product}
 
                                 />)
 

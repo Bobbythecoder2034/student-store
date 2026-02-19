@@ -108,4 +108,4 @@ const createTestimonial = async (req, res, next) => {
     }
 }
 
-module.exports = {getProducts, getProductById, getCustom, createCustom, getTestimonial, createTestimonial}
+module.exports = {getProducts, getProductById, getCustom, createCustom, getTestimonial, createTestimonial, createCustomFile}

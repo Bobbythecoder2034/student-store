@@ -2,7 +2,7 @@ import {useParams} from 'react-router-dom'
 import {useState, useEffect} from 'react'
 
 const Detail = () =>{
-    const {id} = useParams()
+    const {_id} = useParams()
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
@@ -10,7 +10,7 @@ const Detail = () =>{
 
         const fetchProduct = async () => {
             try{
-                const response = await fetch(`/api/products/:${id}`)
+                const response = await fetch(`/api/products/?id=${_id}`)
                 const data = await response.json()
                 setProduct(data)
             }catch(err){
