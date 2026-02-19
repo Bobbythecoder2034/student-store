@@ -1,4 +1,4 @@
-require("dotenv").config
+require("dotenv").config()
 const jwt = require('jsonwebtoken')
 /**
  * JWT auth middleware:
@@ -15,15 +15,16 @@ function requireAuth(req,res,next) {
         const [scheme, token] = authHeader.split(" ")
 
         if(scheme !== "Bearer" || !token){
-            return res.status(404).json({error:"Missing or invalid Authorization Header"})
+            return res.status(401).json({error:"Missing or invalid Authorization Header"})
         }
 
         const payload = jwt.verify(token, process.env.JWT_SECRET)
 
         //Attach authenticated user to request for controllers to use
         //payload.sub = _id from mongodb
-        req.user= {id:payload.sub, email: payload.email, name: payload.name}
-
+        req.user= {id:payload.sub, email: payload.email, name: payload.name, role: payload.role}
+        
+        next();
     }catch (err){
         return res.status(401).json({error: "Invalid or Expired Token"})
     }

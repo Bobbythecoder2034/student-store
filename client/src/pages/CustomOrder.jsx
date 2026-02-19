@@ -1,5 +1,6 @@
 import '../styles/css/CustomOrder.css'
 import {useState} from 'react'
+import Navbar from "../components/Navbar";
 
 const Order = () => {
     const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ const Order = () => {
     return (
         // To-Do: Add file upload functionality and ensure the form submits correctly to the backend
         <div id="container" className='container'>
+            <Navbar/>
             <form method="POST" action='http://localhost:5000/api/public/custom-orders' encType="multipart/form-data">
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>

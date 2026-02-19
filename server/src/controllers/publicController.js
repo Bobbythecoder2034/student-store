@@ -1,6 +1,7 @@
 const Product = require('../models/Product')
 const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
+const FileModel = require('../models/CustomOrderFile')
 
 
 // GET /api/public/products (Filter/Search)

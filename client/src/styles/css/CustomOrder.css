@@ -1,10 +1,9 @@
 #container{
-    width: 85%;
-    margin: 0 auto;
-    padding: 4vh 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
 #header{

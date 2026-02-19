@@ -17,7 +17,9 @@ export default function Navbar(){
             </div>   
 
             <div className="nav-interaction">
+                <NavLink className='nav-products' to={'/'}>Home</NavLink>
                 <NavLink className='nav-products' to={'/products'}>Products</NavLink>
+                <NavLink className='nav-products' to={'/testimonials'}>Testimonials</NavLink>
                 <NavLink className="nav-custom" to={'/custom-order'}>Custom Print</NavLink>
             </div>
         </div>

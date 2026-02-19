@@ -6,4 +6,4 @@ const fileSchema = new mongoose.Schema({
 });
 const FileModel = mongoose.model('File', fileSchema);
 
-export default FileModel;
+module.exports = mongoose.models.File || mongoose.model("File", fileSchema);
