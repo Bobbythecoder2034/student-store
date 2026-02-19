@@ -34,13 +34,13 @@ const Products = () => {
     
 
     return(
-        <div className='product layout'> 
+        <div className='product layout bg-gradient-to-br from-blue-200 to-white dark:from-blue-400 dark:via-black dark:to-black'> 
         <Navbar/>
-            <form onSubmit={e => e.preventDefault()} >
+            <form onSubmit={e => e.preventDefault()} className=' dark:bg-blue-950'>
                 
-                <input placeholder='search' value={search} onChange={handleSearch} className='search' />
+                <input placeholder='search' value={search} onChange={handleSearch} className='search dark:bg-gray-700 dark:text-white ' />
 
-                <select name="sort" onChange={handleFilter} className='filter' >
+                <select name="sort" onChange={handleFilter} className='filter dark:bg-gray-700 dark:text-white' >
                     <option value="">none</option>
                     <option value="miniatures">miniatures</option>
                     <option value="prototypes">prototypes</option>
