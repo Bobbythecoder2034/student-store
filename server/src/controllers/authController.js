@@ -34,7 +34,6 @@ async function register(req,res,next) {
         const created = await User.create({
             name,
             email: email.toLowerCase(),
-            password:password,
             passwordHash
         });
         const token = signToken(created)

@@ -7,7 +7,7 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { LuSparkles } from "react-icons/lu";
 import { FaClipboardList } from "react-icons/fa";
 import { PiStudentBold } from "react-icons/pi";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Featured from "../components/featured";
 
 
@@ -27,12 +27,20 @@ const Home = () => {
     return featured
     
 }
+const [items, setItems] = useState([])
+    async function stuff(params) {
+        const result = await fetch('http://localhost:5000/api/public/testimonials')
+        var revised = await result.json()
+        setItems(revised)
+        console.log(items) 
+    }
 useEffect( () => {
   async function doStuff() {
     var stuff = await findFeatured()
     console.log(typeof stuff)
     setFeatured(stuff)
   }
+  stuff()
   doStuff()
 }, [])
 
@@ -67,13 +75,13 @@ useEffect( () => {
             and leave a testimonial. Everything here is built by
             students-designed, printed, and finished with care
           </p>
-          <div className="shop-products">
+          <NavLink className="shop-products" to={'/products'}>
             <p>Shop Products</p> <FaArrowRight></FaArrowRight>
-          </div>
-          <div className="shop-custom">
+          </NavLink>
+          <NavLink className="shop-custom" to={'/custom-order'}>
             {" "}
-            <Link to={'/custom-order'}>Custom Order</Link> <FaWandMagicSparkles />
-          </div>
+            <p>Custom Order</p> <FaWandMagicSparkles />
+          </NavLink>
 
           <div className="info-blurb info-blurb-one">
             <LuSparkles
@@ -124,11 +132,11 @@ useEffect( () => {
             Popular picks from recent student runs
           </p>
 
-          <div className="view-all view-all-featured">
-            <Link to={'/products'}>View All</Link>
+          <NavLink className="view-all view-all-featured" to={'/products'}>
+            <p>View All</p>
 
             <FaArrowRight/>
-          </div>
+          </NavLink>
 
           {/* Convert these cards into a component with functions that can easily have information filled out for it */}
             
@@ -149,14 +157,14 @@ useEffect( () => {
             Popular picks from recent student runs
           </p>
 
-          <div className="view-all">
-            <Link to={'/testimonials'}>See All</Link>
+          <NavLink className="view-all" to={'/testimonials'}>
+            <p>See All</p>
             <FaArrowRight />
-          </div>
+          </NavLink>
 
           <div className="testimonials">
             {/* Replace manually adding rating with component using useContext and createContext */}
-            <div className="testimonial-card">
+            {/* <div className="testimonial-card">
               <Grid />
               <p className="testimonial-name">Jordan</p>
               <div className="rating">
@@ -199,7 +207,14 @@ useEffect( () => {
               <p className="quote">
                 "Great little gifts-our club ordered a batch and everyone wanted more"
               </p>
-            </div>
+            </div> */}
+            {items.splice(Math.floor(Math.random() * (items.length-2)),3).map((testimonial) => (
+                <div key={testimonial._id}>
+                    <p><strong>{testimonial.name}</strong></p>
+                    <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>
+                    <p>{testimonial.message}</p>
+                </div>
+            ))}
           </div>
         </div>
 
