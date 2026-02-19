@@ -8,8 +8,7 @@ const SingleProduct = ({product}) =>
         return(
 
                 
-                <NavLink  key={product._id} className="product flex flex-col items-center border-3 rounded-2xl p-3 m-2 mb-3 shadow-lg text-center" to={`/product/:${product._id}`}>
-                        {console.log(product._id)}
+                <NavLink  key={product._id} className="product flex flex-col items-center border-3 rounded-2xl p-3 m-2 mb-3 shadow-lg text-center" to={`/products/${product._id}`}>
                         
                         <h1 className="SP-name">{product.name}</h1> 
                         <div className="flex flex-row mt-3 mb-3 gap-6">
