@@ -28,7 +28,7 @@ const Order = () => {
         // To-Do: Add file upload functionality and ensure the form submits correctly to the backend
         <div id="container" className='container'>
             <Navbar/>
-            <form method="POST" action='http://localhost:5000/api/public/custom-orders' encType="multipart/form-data">
+            <form className='form' method="POST" action='http://localhost:5000/api/public/custom-orders' encType="multipart/form-data">
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
