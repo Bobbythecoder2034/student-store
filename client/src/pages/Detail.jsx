@@ -11,9 +11,11 @@ const Detail = () =>{
         const fetchProduct = async () => {
             try{
                 console.log(id)
-                const response = await fetch(`/api/products/${id}`)
+                const response = await fetch(`http://localhost:5000/api/public/products/${id}`)
                 const data = await response.json()
+                console.log(data)
                 setProduct(data)
+                
             }catch(err){
                 console.error('Error fetching product:', err)
             }finally{

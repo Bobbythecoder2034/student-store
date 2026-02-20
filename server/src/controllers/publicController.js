@@ -21,9 +21,9 @@ const getProducts = async (req, res, next) => {
 const getProductById = async (req, res, next) => {
     try {
         const product = await Product.findOne({_id:req.params.id})
-        // if(!product){
-        //     res.status(404).json({message: 'There is no product'})
-        // }
+        if(!product){
+            res.status(404).json({message: 'There is no product'})
+        }
         res.json(product)
     } catch (error) {
         res.status(404).json({message: error})
