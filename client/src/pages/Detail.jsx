@@ -4,6 +4,8 @@ import Navbar from '../components/Navbar'
 
 import Navbar from '../components/Navbar'
 
+import Navbar from '../components/Navbar'
+
 const Detail = () =>{
     const {id} = useParams()
     const [product, setProduct] = useState(null)
