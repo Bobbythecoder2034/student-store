@@ -163,53 +163,8 @@ useEffect( () => {
           </NavLink>
 
           <div className="testimonials">
-            {/* Replace manually adding rating with component using useContext and createContext */}
-            {/* <div className="testimonial-card">
-              <Grid />
-              <p className="testimonial-name">Jordan</p>
-              <div className="rating">
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-              </div>
-              <p className="quote">
-                "Fast turnaround and the print quality is seriously impressive."
-              </p>
-            </div>
-
-            <div className="testimonial-card">
-              <Grid />
-              <p className="testimonial-name">Alyssa</p>
-              <div className="rating">
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-              </div>
-              <p className="quote">
-                "Loved the custom order color options. Students were super helpful."
-              </p>
-            </div>
-
-            <div className="testimonial-card">
-              <Grid />
-              <p className="testimonial-name">Miguel</p>
-              <div className="rating">
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-                <LuSparkles />
-              </div>
-              <p className="quote">
-                "Great little gifts-our club ordered a batch and everyone wanted more"
-              </p>
-            </div> */}
             {items.splice(Math.floor(Math.random() * (items.length-2)),3).map((testimonial) => (
-                <div key={testimonial._id}>
+                <div key={testimonial._id} className="approved-testimonials-home">
                     <p><strong>{testimonial.name}</strong></p>
                     <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>
                     <p>{testimonial.message}</p>
@@ -220,7 +175,7 @@ useEffect( () => {
 
         <footer>
             <p className="wer">@ 2026 West-MEC Student-made prints</p>
-            <p className="admin">Admin</p>
+            <p className="admin-foot">Admin</p>
         </footer>
 
         <div className="scroll" style={{ height: "30vh", opacity: "0" }}>

@@ -21,7 +21,7 @@ const standardSchema = new mongoose.Schema({
         material:{type:String, trim:true, enum:['Nylon','PLA','ABS'], default: 'Nylon'},
 
         // status (Pending/In Progress/Ready/Completed/Cancelled)
-        status:{type:String,enum:['Pending','In Progress', 'Ready', "completed", "Cancelled"],default:'Pending'},
+        status:{type:String,enum:['Pending','In Progress', 'Ready', 'Completed', "Cancelled"],default:'Pending'},
 
         // paid flag (future payments)
         paidFlag:{type:Number, required:false, default:0.00},

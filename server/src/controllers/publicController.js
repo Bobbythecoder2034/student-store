@@ -1,19 +1,21 @@
 const Product = require('../models/Product')
 const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
-const FileModel = require('../models/CustomOrderFile')
+// const FileModel = require('../models/CustomOrderFile')
+const {Readable} = require("stream")
+const {getBucket} = require('../config/db')
 
 
 // GET /api/public/products (Filter/Search)
 const getProducts = async (req, res, next) => {
     try {
         const products = await Product.find({})
-        if(!products){
-            res.status(404).json({message: 'There are no products'})
+        if(!products || products.length === 0){
+            return res.status(404).json({message: 'There are no products'})
         }
-        res.json(products)
+        return res.json(products)
     } catch (error) {
-        res.status(404).json({message: error})
+        return res.status(500).json({message: error.message || String(error)})
     }
 }
 
@@ -34,12 +36,12 @@ const getProductById = async (req, res, next) => {
 const getCustom = async (req, res, next) => {
     try {
         const customs = await Custom.find({})
-        if(!customs){
-            res.status(404).json({message: 'There are no customs'})
+        if(!customs || customs.length === 0){
+            return res.status(404).json({message: 'There are no customs'})
         }
-        res.json(customs)
+        return res.json(customs)
     } catch (error) {
-        res.status(404).json({message: 'nope'})
+        return res.status(500).json({message: error.message || String(error)})
     }
 }
 
@@ -51,14 +53,18 @@ const createCustom = async (req, res, next) =>{
     try {
         const data = req.body
 
-        if(!data){
-            res.status(404).json({message:'Missing information'})
+        if(!data || Object.keys(data).length === 0){
+            return res.status(400).json({message:'Missing information'})
         }
 
         const custom = await Custom.create(data)
-        res.status(201).json({custom})
+
+        console.log("content-type:", req.headers["content-type"]);
+        console.log("body keys:", req.body && Object.keys(req.body));
+
+        return res.status(201).json({custom})
     } catch (error) {
-        res.status(400).json({message: error})
+        return res.status(400).json({message: error.message || String(error)})
     }
 }
 
@@ -66,29 +72,58 @@ const createCustom = async (req, res, next) =>{
 const createCustomFile = async (req, res, next) =>{
     try{
         if(!req.file){
-            return res.status(400).send('No file uploaded')
+            return res.status(400).json({message: 'No file uploaded'})
         }
-        const newFile = new FileModel({
-            filename: req.file.originalname,
+        const bucket = getBucket();
+
+        const readableStream = Readable.from(req.file.buffer);
+
+        const uploadStream = bucket.openUploadStream(req.file.originalname, {
             contentType: req.file.mimetype,
-            data: req.file.buffer // Access the buffer from req.file
+            metadata: {field: req.file.fieldname},
         });
 
-        await newFile.save();
-        res.status(200).send('File uploaded successfully!');
+        const fileId = uploadStream.id;
+
+        let responded = false;
+
+        uploadStream.on("error", (err) =>{
+            if(responded || res.headersSent) return;
+            responded = true;
+            return res.status(500).json({ message: "Upload failed", error: err.message});
+        });
+        
+        uploadStream.on("finish", () =>{
+            if(responded || res.headersSent) return;
+            responded = true;
+
+            return res.status(201).json({message: "Uploaded", file: {id: uploadStream.id}});    
+        });
+
+        readableStream.pipe(uploadStream);
     }catch(err){
-        next(err)
+        if(res.headersSent) return;
+        return res.status(500).json({message: "Server error", error: err.message });
     }
 }
+
 
 // GET /api/public/testimonials (Gets the testimonials with the approved status)
 const getTestimonial = async (req, res, next) => {
     try {
         const testimonials = await Testimonial.find({})
-        if(!testimonials){
-            res.status(404).json({message: 'There are no testimonials'})
+        if(!testimonials || testimonials.length === 0){
+            return res.status(404).json({message: 'There are no testimonials'})
         }
-        res.json(testimonials)
+        return res.json(testimonials)
+    } catch (error) {
+        next(error)
+    }
+}
+
+const SignUp = async (req,res, next) => {
+    try {
+        
     } catch (error) {
         next(error)
     }
@@ -98,11 +133,11 @@ const getTestimonial = async (req, res, next) => {
 const createTestimonial = async (req, res, next) => {
     try {
         const incomingTestimonial = req.body
-        if(!incomingTestimonial){
-            res.status(404).json({message:'Missing information'})
+        if(!incomingTestimonial || Object.keys(incomingTestimonial).length === 0){
+            return res.status(404).json({message:'Missing information'})
         }
         const testimonials = await Testimonial.create(incomingTestimonial)
-        res.status(201).json({testimonials})
+        return res.status(201).json({testimonials})
     } catch (error) {
         next(error)
     }
