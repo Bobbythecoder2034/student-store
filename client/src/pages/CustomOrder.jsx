@@ -24,77 +24,11 @@ const Order = () => {
         setFormData(prev => ({...prev, file: e.target.files[0]}))
     }
 
-    const handleSubmit = async (e) =>{
-        e.preventDefault()
-
-        try{
-            if(!formData.file){
-                alert("Please upload a file")
-                return
-            }
-
-            const fd = new FormData()
-            fd.append('file', formData.file)
-
-            const fileRes = await fetch('http://localhost:5000/api/public/custom-orders/file', {method:'POST', body: fd})
-
-            const fileJson = await fileRes.json()
-            if(!fileRes.ok){
-                throw new Error(fileJson.message || "File upload failed")
-            }
-
-            const fileId = fileJson?.file?.id
-            if(!fileId){
-                throw new Error("Upload succeded, but no file ID returned")
-            }
-
-            const orderPayload = {
-                name: formData.name,
-                email: formData.email,
-                phone: formData.phone,
-                address: formData.address,
-                description: formData.description,
-                color: formData.color,
-                material: formData.material,
-                size: formData.size,
-                fileId
-            }
-
-            const orderRes = await fetch('http://localhost:5000/api/public/custom-orders', {
-                method:'POST',
-                headers:{'Content-Type':'application/json'},
-                body: JSON.stringify(orderPayload)
-            })
-
-            const orderJson = await orderRes.json()
-            if(!orderRes.ok){
-                throw new Error(orderJson.message || "Order submission failed")
-            }
-
-            alert("Order submitted successfully!")
-
-            setFormData({
-                name: '',
-                email: '',
-                phone: '',
-                address: '',
-                description: '',
-                color: 'red',
-                material: 'Nylon',
-                size: '',
-                file: null
-            })
-        }catch(err){
-            console.error(err)
-            alert(err.message || "Something went wrong")
-        }
-    }
-
     return (
         // To-Do: Add file upload functionality and ensure the form submits correctly to the backend
         <div id="container" className='container'>
             <Navbar/>
-            <form onSubmit={handleSubmit}>
+            <form method="POST" action='http://localhost:5000/api/public/custom-orders' encType="multipart/form-data">
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
@@ -128,7 +62,7 @@ const Order = () => {
                     <input type="text" name="size" placeholder="Length, Width, Height (in CM)" value={formData.size} onChange={handleChange} required/>
 
                 <label htmlFor="file">3D Model File:</label>
-                    <input type="file" name="file" onChange={handleFileChange} accept=".stl, .zip" required/>
+                    <input type="file" name="file" onChange={handleFileChange} required/>
                     
                 <button type="submit">Submit</button>
             </form>

@@ -1,11 +1,9 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const fileSchema = new mongoose.Schema({
+    filename: String,
+    contentType: String,
+    data: Buffer // Store the file data as a Buffer
+});
+const FileModel = mongoose.model('File', fileSchema);
 
-const customOrderFileSchema = new mongoose.Schema({
-    fileId: {type: mongoose.Schema.Types.ObjectId, required: true}, // GridFS id
-    filename: {type: String, required: true},
-    contentType: {type: String, required: true},
-    length: {type: Number},
-    orderID: {type: mongoose.Schema.Types.ObjectId, ref: "CustomOrder"}, // Reference to the associated custom order
-}, {timestamps: true});
-
-module.exports = mongoose.model("CustomOrderFile", customOrderFileSchema);
+module.exports = mongoose.models.File || mongoose.model("File", fileSchema);

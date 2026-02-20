@@ -2,9 +2,6 @@ function errorHandler(err,req,res,next){
     console.log("API Error: ", err)
 
     //Mongoose invalid ObjectID often triggers CastError
-
-    if(res.headersSent) return next(err)
-
     if(err.name === "CastError"){
         return res.status(400).json({error:"Invalid ID Format"})
     }

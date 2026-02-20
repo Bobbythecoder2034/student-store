@@ -18,8 +18,9 @@ const customOrderSchema = new mongoose.Schema({
         material:{type:String, trim:true, enum:['Nylon','PLA','ABS'], default:'Nylon'},
         size:{type:String, required:true, trim:true, maxlength:100},
 
-        // GridFS reference
-        fileId: { type: mongoose.Schema.Types.ObjectId, required: true },
+        // reference file URLs + metadata
+        urls:{type:[String], default: []},
+        metadata:{type:String, default: ''},
 
         // status (Submitted/Reviewed/Quoted/In Progress/Completed)
         status:{type:String,enum:['Pending','In Progress', 'Ready', "Completed", "Cancelled"], default:'Pending'},
