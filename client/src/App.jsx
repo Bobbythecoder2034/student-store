@@ -4,6 +4,7 @@ import Navbar from './components/Navbar.jsx'
 // import Detail from './pages/Detail.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
+import HomeRevamp from './pages/HomeRevamp.jsx'
 // import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
 import './styles/css/style.css'
@@ -17,6 +18,7 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/>
+            <Route path='/revamp' element={<HomeRevamp/>} />
             <Route path="*" element={<NotFound/>}/>
             <Route path='/testimonials' element={<Testimonials/>}/>
           </Routes>
