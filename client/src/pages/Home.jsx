@@ -47,7 +47,7 @@ useEffect( () => {
 
   return (
     <>
-      <div className="layout">
+      <div className="layout bg-gradient-to-br from-blue-200 to-white dark:from-blue-400 dark:via-black dark:to-black min-h-screen dark:text-white text-black">
         {/* Add dark mode later */}
         <Navbar />
         <div className="banner">
@@ -61,8 +61,8 @@ useEffect( () => {
           >
             Innovative
           </div>
-          <div className="sub-info sub-info-two">Fast turnaround</div>
-          <div className="sub-info sub-info-three">Student-made 3d prints</div>
+          <div className="sub-info sub-info-two dark:text-black">Fast turnaround</div>
+          <div className="sub-info sub-info-three dark:text-black">Student-made 3d prints</div>
           <h1 className="banner-head">
             West-MEC student-made{" "}
             <span style={{ color: "hsl(221, 83%, 53%)" }}>
@@ -70,7 +70,7 @@ useEffect( () => {
             </span>
             , built for everyday use.
           </h1>
-          <p className="banner-info">
+          <p className="banner-info dark:text-gray-400 text-gray-500">
             Browse featured products, request custom prints (STL/ZIP uploads),
             and leave a testimonial. Everything here is built by
             students-designed, printed, and finished with care
@@ -78,7 +78,7 @@ useEffect( () => {
           <NavLink className="shop-products" to={'/products'}>
             <p>Shop Products</p> <FaArrowRight></FaArrowRight>
           </NavLink>
-          <NavLink className="shop-custom" to={'/custom-order'}>
+          <NavLink className="shop-custom dark:text-black" to={'/custom-order'}>
             {" "}
             <p>Custom Order</p> <FaWandMagicSparkles />
           </NavLink>
@@ -119,20 +119,17 @@ useEffect( () => {
               </h3>{" "}
             </div>
           </div>
-          {/* <div className="sub-info">
-                    <div style={{backgroundColor: 'hsl(221, 83%, 53%)', color: 'hsl(210, 40%, 98%)'}}>Innovative</div>
-                    <div>Fast turnaround</div>
-                </div> */}
+          
         </div>
 
         <div className="featured">
           <Grid />
           <h1 className="sub-header">Featured</h1>
-          <p className="sub-description">
+          <p className="sub-description dark:text-gray-400 text-grey-500">
             Popular picks from recent student runs
           </p>
 
-          <NavLink className="view-all view-all-featured" to={'/products'}>
+          <NavLink className="view-all view-all-featured dark:text-white text:black" to={'/products'}>
             <p>View All</p>
 
             <FaArrowRight/>
@@ -142,7 +139,7 @@ useEffect( () => {
             
             {featured.map((x)=>{
               count++
-              return <Featured key={x._id} name={x.name} category={x.category} buzzwordOne={x.slug} buzzwordTwo={x.slug} order={count} id={x.id}/>
+              return <Featured  key={x._id} name={x.name} category={x.category} buzzwordOne={x.slug} buzzwordTwo={x.slug} order={count} id={x.id}/>
             })}
          
           
@@ -153,11 +150,11 @@ useEffect( () => {
         <div className="testimonial">
           <Grid />
           <p className="sub-header test">What people are saying</p>
-          <p className="sub-description">
+          <p className="sub-description dark:text-gray-400 text-gray-500">
             Popular picks from recent student runs
           </p>
 
-          <NavLink className="view-all" to={'/testimonials'}>
+          <NavLink className="view-all dark:text-black" to={'/testimonials'}>
             <p>See All</p>
             <FaArrowRight />
           </NavLink>
