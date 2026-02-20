@@ -32,11 +32,11 @@ const Testimonials = () => {
     return (
         <>
         
-        <div className='product layout'>
+        <div className='product layout bg-gradient-to-br from-blue-200 to-white dark:from-blue-400 dark:via-black dark:to-black dark:text-white text-black'>
             <Navbar/>
             <h2>Testimonials</h2>
             {items.map((testimonial) => (
-                <div key={testimonial._id} className='testimonials-all'>
+                <div key={testimonial._id} className='testimonials-all dark:bg-gray-800 bg-white'>
                     <p><strong>{testimonial.name}</strong></p>
                     <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>
                     <p>{testimonial.message}</p>

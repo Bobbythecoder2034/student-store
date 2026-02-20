@@ -91,9 +91,9 @@ const Order = () => {
     }
 
     return (
-        <div id="container" className='container'>
+        <div id="container" className='container bg-gradient-to-br from-blue-200 to-white dark:from-blue-400 dark:via-black dark:to-black dark:text-white text-black'>
             <Navbar/>
-            <form onSubmit={handleSubmit}>
+            <form className ='form dark:bg-gray-800 bg-white mt-6' onSubmit={handleSubmit}>
                 <h1 id="header">Custom Order</h1>
                 <label htmlFor="name">Name:</label>
                     <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required/>
@@ -107,13 +107,13 @@ const Order = () => {
                     <textarea name="description" placeholder="Product Description" value={formData.description} onChange={handleChange} required/>
                 
                 <label htmlFor="color">Select Color:</label>
-                <select name="color" value={formData.color} onChange={handleChange}>
-                    <option value="red">Red</option>
-                    <option value="blue">Blue</option>
-                    <option value="green">Green</option>
-                    <option value="purple">Purple</option>
-                    <option value="yellow">Yellow</option>
-                    <option value="orange">Orange</option>
+                <select name="color"  value={formData.color} onChange={handleChange}>
+                    <option value="red" className='text-black'>Red</option>
+                    <option value="blue" className='text-black'>Blue</option>
+                    <option value="green" className='text-black'>Green</option>
+                    <option value="purple" className='text-black'>Purple</option>
+                    <option value="yellow" className='text-black'>Yellow</option>
+                    <option value="orange" className='text-black'>Orange</option>
                 </select>
 
                 <label htmlFor="material">Select Material:</label>
