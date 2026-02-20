@@ -21,11 +21,22 @@
     background-color: white;
     border-radius: 1rem;
     display: flex;
-    align-items: center;
+    justify-content: center;
     gap: .75rem;
 }
 
-.testimonials{
-        border: solid 1px black;
+.testimonial-card{
+    width: 80%;
+    height: 30%;
+}
 
+.testimonials{
+    border: solid 1px black;
+    gap: 3%;
+}
+
+.testimonials > h1{
+    font-family: 'Fraunces';
+    font-size: 1rem;
+    font-weight: 600;
 }

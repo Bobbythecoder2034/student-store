@@ -26,16 +26,17 @@ const Testimonials = () => {
     return (
         <div style={{alignItems: 'center', justifyContent: 'center'}} className='layout'>
             <div className="testimonials-layout">
-               <div className="content-header">
+               <div className="content-header" style={{height: '10%'}}>
                 <h1 className='testimonials-header '>Testimonials</h1>
                 <sub>Submissions are reviewed before appearing publicly</sub>
             </div> 
 
             <div className="testimonial-boxes">
                 <div className='testimonials'>
-                    <div></div>
-                    <div></div>
-                    <div></div>
+                    <h1 style={{alignSelf: 'start'}}>Approved</h1>
+                    <div className='testimonial-card'></div>
+                    <div className='testimonial-card'></div>
+                    <div className='testimonial-card'></div>
                 </div>
                 <form method='post' action="http://localhost:5000/api/public/testimonials" className='testimonials-form'>
                     
