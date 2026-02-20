@@ -91,7 +91,6 @@ const Order = () => {
     }
 
     return (
-        // To-Do: Add file upload functionality and ensure the form submits correctly to the backend
         <div id="container" className='container'>
             <Navbar/>
             <form onSubmit={handleSubmit}>
