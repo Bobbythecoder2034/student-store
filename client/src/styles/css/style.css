@@ -172,7 +172,7 @@ justify-content: space-around;
   font-weight: 500;
   align-self: center;
   justify-self: center;
-  color: hsl(0, 0%, 28%);
+  
   margin-left: 12%;
 }
 
@@ -324,7 +324,7 @@ shop.custom{
   grid-column: 1/4;
   font-family: 'IBM plex sans';
   font-size: small;
-  color: hsl(0, 0%, 22%);
+  
   margin-left: 3%;
 }
 
@@ -335,7 +335,7 @@ shop.custom{
   border: solid 1.4px black;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
   border-radius: 1.5rem;
-  background-color: white;
+  
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);  
@@ -378,7 +378,7 @@ shop.custom{
 .featured-product-name{
   grid-row-start: 2;
   font-family: 'IBM plex sans';
-  color: black;
+ 
   font-weight: 600;
   grid-column: 1/6;
   font-size: small;
@@ -401,7 +401,7 @@ shop.custom{
   font-family: 'IBM plex sans';
   font-size: smaller;
   font-weight: 500;
-  color: hsl(0, 0%, 22%);
+
   justify-self: start;
   margin-left: 5%;
 }
