@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import Navbar from '../components/Navbar'
+import '../styles/css/testimonials.css'
 
 const Testimonials = () => {
     const [testimonials, setTestimonials] = useState([])
@@ -31,17 +31,33 @@ const Testimonials = () => {
 
     return (
         <>
-        
-        <div className='product layout'>
-            <Navbar/>
-            <h2>Testimonials</h2>
-            {items.map((testimonial) => (
-                <div key={testimonial._id} className='testimonials-all'>
+        <div style={{alignItems: 'center', justifyContent: 'center'}} className='layout'>
+            <div className="testimonials-layout">
+               <div className="content-header" style={{height: '10%'}}>
+                <h1 className='testimonials-header '>Testimonials</h1>
+                <sub>Submissions are reviewed before appearing publicly</sub>
+            </div> 
+
+            <div className="testimonial-boxes">
+                <div className='testimonials'>
+                    <h1 style={{alignSelf: 'start'}}>Approved</h1>
+                    <div className='testimonial-card'></div>
+                    <div className='testimonial-card'></div>
+                    <div className='testimonial-card'></div>
+                </div>
+                <form method='post' action="http://localhost:5000/api/public/testimonials" className='testimonials-form'>
+                    
+                </form>
+            </div>
+            </div>
+            
+            {/* {testimonials.map((testimonial) => (
+                <div key={testimonial._id}>
                     <p><strong>{testimonial.name}</strong></p>
                     <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>
                     <p>{testimonial.message}</p>
                 </div>
-            ))}
+            ))} */}
         </div>
         </>
         

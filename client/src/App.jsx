@@ -5,6 +5,8 @@ import Navbar from './components/Navbar.jsx'
 import Home from './pages/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Products from './pages/Products.jsx'
+import HomeRevamp from './pages/HomeRevamp.jsx'
+// import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
 import Order from './pages/CustomOrder.jsx'
 import SignUp from './pages/SignUp.jsx'
@@ -25,6 +27,8 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path='/products' element={<Products/>}/>
+            <Route path='/revamp' element={<HomeRevamp/>} />
+            <Route path="*" element={<NotFound/>}/>
             <Route path='/testimonials' element={<Testimonials/>}/>
             <Route path='/custom-order' element={<Order/>}/>
             <Route path="/products/:slug" />
