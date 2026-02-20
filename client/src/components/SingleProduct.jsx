@@ -7,7 +7,7 @@ const SingleProduct = ({name, slug, description, price, category, inStock, featu
         return(
 
                 <NavLink className="product flex flex-col items-center border-3 rounded-2xl p-3 m-2 mb-3 shadow-lg text-center dark:bg-gray-800 bg-white" id={slug} to={'/detail'} >
-                        <h1 className="SP-name font-bold dark: text-white">{name}</h1> 
+                        <h1 className="SP-name font-bold dark:text-white text-black">{name}</h1> 
                         <div className="flex flex-col md:flex-row mt-3 mb-3 gap-6">
                                 <h2 className="SP SP-price rounded-lg p-1 pr-2 pl-2 bg-blue-600 text-white font-bold">{price}</h2> 
                                 {
