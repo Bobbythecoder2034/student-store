@@ -7,6 +7,8 @@ import NotFound from './pages/NotFound.jsx'
 import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
 import Order from './pages/CustomOrder.jsx'
+import SignUp from './pages/SignUp.jsx'
+import Admin from './pages/adminDashboard.jsx'
 import './styles/css/style.css'
 
 // get data
@@ -22,10 +24,12 @@ const App = () => {
         <main>
           <Routes>
             <Route path="/" element={<Home/>}/>
-            <Route path='/products' element={<Products/>}/> {/* Products link has map error */}
-            <Route path='/testimonials' element={<Testimonials/>}/> {/* Only shows the word 'testimonials' along with navbar */}
+            <Route path='/products' element={<Products/>}/>
+            <Route path='/testimonials' element={<Testimonials/>}/>
             <Route path='/custom-order' element={<Order/>}/>
             <Route path="/products/:slug" />
+            <Route path="/sign-up" element={<SignUp/>}/>
+            <Route path="/admin" element={<Admin/>}/>
             <Route path="*" element={<NotFound/>}/>
           </Routes>
         </main>

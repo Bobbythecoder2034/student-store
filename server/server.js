@@ -3,7 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const cors = require("cors")
 
-const connectDB = require("./src/config/db")
+const {connectDB} = require("./src/config/db")
 const authRoutes = require("./src/routes/authRoutes")
 const publicRoutes = require("./src/routes/publicRoutes")
 const adminRoutes = require('./src/routes/adminRoutes')
@@ -18,7 +18,7 @@ const app = express()
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Methods', 'Access-Control-Allow-Headers', 'Access-Control-Allow-Credentials'],
     credentials: true
 }))
 

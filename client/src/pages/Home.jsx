@@ -175,7 +175,7 @@ useEffect( () => {
 
         <footer>
             <p className="wer">@ 2026 West-MEC Student-made prints</p>
-            <p className="admin">Admin</p>
+            <p className="admin-foot">Admin</p>
         </footer>
 
         <div className="scroll" style={{ height: "30vh", opacity: "0" }}>
