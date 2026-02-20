@@ -1,26 +1,34 @@
-import {useParams} from 'react-router-dom'
+import {useParams} from 'react-router'
 import {useState, useEffect} from 'react'
 
 const Detail = () =>{
-    const {slug} = useParams()
+    const {id} = useParams()
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
     useEffect(() =>{
-        // Fetch product by slug
-        fetchProduct(slug)
-    }, [slug])
 
-    const fetchProduct = async (slug) =>{
-        try{
-            const response = await fetch(`/api/products/${slug}`)
-            const data = await response.json()
-            setProduct(data)
-        }catch(err){
-            console.error('Error fetching product:', err)
-        }finally{
-            setLoading(false)
+        const fetchProduct = async () => {
+            try{
+                console.log(id)
+                const response = await fetch(`http://localhost:5000/api/public/products/${id}`)
+                const data = await response.json()
+                console.log(data)
+                setProduct(data)
+                
+            }catch(err){
+                console.error('Error fetching product:', err)
+            }finally{
+                setLoading(false)
+            }
         }
+
+        fetchProduct()
+        // Fetch product by slug
+    }, [])//removed the slug from []
+
+    const fetchProduct = async (id) =>{
+        
     }
 
     if (loading) return <div>Loading...</div>
