@@ -21,19 +21,30 @@
     background-color: white;
     border-radius: 1rem;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     gap: .75rem;
 }
 
 .testimonial-card{
     width: 80%;
-    height: 30%;
+    height: 23%;
+    border: solid 1px black;
+    border-radius: 1rem;
+box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 
 .testimonials{
     border: solid 1px black;
     gap: 3%;
+    flex-direction: column;
+    width: 55%;
 }
+
+.testimonials > *{
+    margin-left: 10%;
+}
+
+
 
 .testimonials > h1{
     font-family: 'Fraunces';

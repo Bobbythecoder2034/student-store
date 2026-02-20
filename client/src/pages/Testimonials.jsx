@@ -33,7 +33,7 @@ const Testimonials = () => {
         <>
         <div style={{alignItems: 'center', justifyContent: 'center'}} className='layout'>
             <div className="testimonials-layout">
-               <div className="content-header" style={{height: '10%'}}>
+               <div className="content-header" style={{height: '7%'}}>
                 <h1 className='testimonials-header '>Testimonials</h1>
                 <sub>Submissions are reviewed before appearing publicly</sub>
             </div> 
@@ -45,8 +45,15 @@ const Testimonials = () => {
                     <div className='testimonial-card'></div>
                     <div className='testimonial-card'></div>
                 </div>
-                <form method='post' action="http://localhost:5000/api/public/testimonials" className='testimonials-form'>
-                    
+                <form style={{width: '40%'}} method='post' action="http://localhost:5000/api/public/testimonials" className='form'>
+                <label htmlFor="name">Name</label>
+                <input type="text" name='name' placeholder='Name'/>
+                <label htmlFor="message">Quote</label>
+                <input type="text" name='message' placeholder='message' />
+                <label htmlFor="rating">Rating</label>
+                <input type="number" min={1} max={5} name='rating' placeholder='Rating (1-5)'/>
+
+                <button type="submit">Submit testimonial</button>
                 </form>
             </div>
             </div>
