@@ -9,14 +9,16 @@ const productSchema = new mongoose.Schema(
         
         description: {type: String, required: true, maxlength: 100},
 
-        // material: {},
-
-        // color
+        color:{type:String, trim:true, enum:['red','blue','yellow','orange','purple', 'green'], default:'red'},
+        material:{type:String, trim:true, enum:['Nylon','PLA','ABS'], default:'Nylon'},
+        
+        image:{type:String, trim:true, required:true},
         
         price: {type: Number, required: true},
         category: {type: String, enum: ['miniatures', 'prototypes', 'functional-parts', 'decorative', 'toys', 'organizers'], default: 'miniatures'},
         inStock: {type: Boolean, default: true},
         featured: {type: Boolean, default: true}
+
     },
     {timestamps: true}
     

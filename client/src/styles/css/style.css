@@ -536,7 +536,7 @@ shop.custom{
 
 .testimonials{
   width: 95%;
-  height: 95%;
+  height: 100%;
   display: flex;
   flex-direction: row;
   align-self: center;
@@ -546,6 +546,7 @@ shop.custom{
   grid-row: 3/11;
   grid-column: 1/11;
   border-bottom: .05rem solid black;
+  padding: 1.6rem;
 
 }
 
@@ -629,5 +630,28 @@ footer > *{
 
 .admin-foot{
   text-decoration: underline;
+}
+
+.approved-testimonials-home{
+  display: flex;
+  width: 20rem;
+  height: 100%;
+  flex-direction: column;
+  margin-top: 2rem;
+  gap: .3rem;
+  border: 1px black solid;
+  border-radius: 20px;
+  padding: 1rem;
+}
+.testimonials-all{
+  display: flex;
+  width: 20rem;
+  height: 100%;
+  flex-direction: column;
+  margin-top: .2  rem;
+  gap: .3rem;
+  border: 1px black solid;
+  border-radius: 20px;
+  padding: 1rem;
 }
 

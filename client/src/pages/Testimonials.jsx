@@ -36,7 +36,7 @@ const Testimonials = () => {
             <Navbar/>
             <h2>Testimonials</h2>
             {items.map((testimonial) => (
-                <div key={testimonial._id}>
+                <div key={testimonial._id} className='testimonials-all'>
                     <p><strong>{testimonial.name}</strong></p>
                     <p>Rating: {'⭐'.repeat(testimonial.rating)}</p>
                     <p>{testimonial.message}</p>

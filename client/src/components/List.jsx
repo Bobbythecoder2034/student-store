@@ -6,7 +6,7 @@ const List = ({products, filters, search}) =>
         
         return(
 
-                <div className='product-column'>
+                <div className='product-column dark:bg-gray-600'>
                      
                         {products.filter((product)=> product.name.match(new RegExp(search, 'i')) !== null && product.category.match(new RegExp(filters, 'i')) !== null).map((product)=>{
                                 
