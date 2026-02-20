@@ -108,6 +108,14 @@ const getTestimonial = async (req, res, next) => {
     }
 }
 
+const SignUp = async (req,res, next) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
+}
+
 // POST /api/public/testimonials (Create's a testimonial with the pending status ) 
 const createTestimonial = async (req, res, next) => {
     try {
