@@ -21,6 +21,7 @@ const getProducts = async (req, res, next) => {
 // GET /api/public/products/:id (Filter/Search)
 const getProductById = async (req, res, next) => {
     try {
+        // gets a product from the Id
         const product = await Product.findOne({_id:req.params.id})
         if(!product){
             res.status(404).json({message: 'There is no product'})

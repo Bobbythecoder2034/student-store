@@ -3,7 +3,10 @@ import {useState, useEffect} from 'react'
 import Navbar from '../components/Navbar'
 
 const Detail = () =>{
+
+    // getting the id from the params
     const {id} = useParams()
+
     const [product, setProduct] = useState(null)
     const [loading, setLoading] = useState(true)
 
@@ -11,28 +14,30 @@ const Detail = () =>{
 
         const fetchProduct = async () => {
             try{
-                console.log(id)
+
+                // get the product based on ID -- it errors if you remove the http://localhost:5000
                 const response = await fetch(`http://localhost:5000/api/public/products/${id}`)
                 const data = await response.json()
-                console.log(data)
+                // use state the data
                 setProduct(data)
                 
             }catch(err){
                 console.error('Error fetching product:', err)
             }finally{
+
+                // when done change loading status
                 setLoading(false)
             }
         }
 
-        fetchProduct()
-        // Fetch product by slug
-    }, [])//removed the slug from []
+        fetchProduct() // Fetch product by _id
 
-    const fetchProduct = async (id) =>{
-        
-    }
+    }, [])
 
+    // loading screen
     if (loading) return <div>Loading...</div>
+
+    // error message
     if (!product) return <div>Product not found</div>
 
     return (
@@ -49,9 +54,9 @@ const Detail = () =>{
                     {product.tags ?.map(tag => <span key={tag}>{tag}</span>)}
                 </div>
                 <div className="stock-status">
+                    {/* change html based on supply of the product */}
                     {product.inStock ? <span className="">In Stock</span> : <span className="">Out of Stock</span>}
                 </div>
-                <button className="request-btn">Request this item</button>
             </div>
         </div>
     )

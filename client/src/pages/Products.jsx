@@ -21,6 +21,8 @@ const Products = () => {
 
     }
     async function stuff() {
+
+        // prevent destroy
         const result = await fetch('http://localhost:5000/api/public/products')
         var revised = await result.json()
         setItems(revised)
@@ -36,6 +38,7 @@ const Products = () => {
     return(
         <div className='product layout bg-gradient-to-br from-blue-200 to-white dark:from-blue-400 dark:via-black dark:to-black min-h-screen'> 
         <Navbar/>
+
             <form onSubmit={e => e.preventDefault()} className=' bg-[background-color: rgba(0, 0, 0, 0)] rounded-sm p-3'>
                 
                 <input placeholder='search' value={search} onChange={handleSearch} className='search dark:bg-blue-900 dark:text-white ' />
@@ -50,6 +53,7 @@ const Products = () => {
                     <option value="organizers">organizers</option>
                 </select>
                                                 
+                {/* send inportant info into the list */}
                 <List products={items} search={search} filters={filter}/>
 
             </form>
