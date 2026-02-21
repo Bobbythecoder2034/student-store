@@ -139,7 +139,7 @@ useEffect( () => {
             
             {featured.map((x)=>{
               count++
-              return <Featured  key={x._id} name={x.name} category={x.category} buzzwordOne={x.slug} buzzwordTwo={x.slug} order={count} id={x.id}/>
+              return <Featured key={x._id} _id={x._id} name={x.name} category={x.category} buzzwordOne={x.slug} buzzwordTwo={x.slug} order={count} id={x.id} {...x}/>
             })}
          
           

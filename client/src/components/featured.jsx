@@ -2,8 +2,10 @@ import React from 'react'
 import Grid from './grid'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa'
+import {NavLink} from "react-router-dom";
 
-const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order, id}) => {
+
+const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order, id, _id}) => {
   const link = name.replaceAll(' ', '-').toLowerCase()
   var position = null
   if(!order){
@@ -31,10 +33,10 @@ const Featured = ({name, price, category, buzzwordOne, buzzwordTwo, order, id}) 
             <p className="featured-product-category dark:text-gray-400 text-gray-500">{category}</p>
             <div className="buzzword buzzword-one dark:text-black">{buzzwordOne}</div>
             <div className="in-stock buzzword-three buzzword">In stock</div>
-            <div className="featured-details">
-              <p className="view dark:text-black"><Link to={`/${id}`}> View Detail</Link></p>
+            <NavLink className="featured-details" to={`/products/${_id}`}>
+              <p className="view dark:text-black"> View Detail</p>
               <FaArrowRight style={{ fontSize: "small" }} />
-            </div>
+            </NavLink>
           </div>  )
 }
 
