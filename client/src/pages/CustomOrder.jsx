@@ -95,7 +95,7 @@ const Order = () => {
     }
 
     return (
-        <div id="container" className='container'>
+        <div id="container" className="container">
             <Navbar/>
             <form className='form' onSubmit={handleSubmit}>
                 <h1 id="header">Custom Order</h1>

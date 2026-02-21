@@ -30,9 +30,6 @@ app.use(express.urlencoded({extended:true})) // Parses Form data for login if ne
 app.get('/api/health', (req,res)=> res.json({ok:true}))
 
 // Routes
-
-
-
 app.use('/api/auth', authRoutes)
 app.use('/api/public', publicRoutes)
 app.use('/api/admin', adminRoutes)
