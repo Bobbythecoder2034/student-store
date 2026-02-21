@@ -1,7 +1,6 @@
 const Product = require('../models/Product')
 const Custom = require('../models/CustomOrder')
 const Testimonial = require('../models/Testimonial')
-// const FileModel = require('../models/CustomOrderFile')
 const {Readable} = require("stream")
 const {getBucket} = require('../config/db')
 
@@ -51,59 +50,52 @@ const getCustom = async (req, res, next) => {
 // POST /api/public/custom-orders (Creates a custom order)
 const createCustom = async (req, res, next) =>{
     try {
-        const data = req.body
+        const data = req.body // Gets the data from the request body, which contains the information for the custom order
 
-        if(!data || Object.keys(data).length === 0){
-            return res.status(400).json({message:'Missing information'})
-        }
+        if(!data || Object.keys(data).length === 0) return res.status(400).json({message:'Missing information'})
+        // If there is no data or the data is empty, return an error message
 
-        const custom = await Custom.create(data)
+        const custom = await Custom.create(data) // Creates a new custom order in the database using the provided data and waits for it to be saved
 
-        console.log("content-type:", req.headers["content-type"]);
-        console.log("body keys:", req.body && Object.keys(req.body));
-
-        return res.status(201).json({custom})
+        return res.status(201).json({custom}) // Returns a success response with the created custom order
     } catch (error) {
-        return res.status(400).json({message: error.message || String(error)})
+        return res.status(400).json({message: error.message || String(error)}) // Returns an error if something goes wrong
     }
 }
 
 // POST /api/public/custom-orders/file (Handles file uploads for custom orders)
 const createCustomFile = async (req, res, next) =>{
     try{
-        if(!req.file){
-            return res.status(400).json({message: 'No file uploaded'})
-        }
-        const bucket = getBucket();
+        if(!req.file) return res.status(400).json({message: 'No file uploaded'}) // If no file is uploaded, return an error message
+        
+        const bucket = getBucket(); // Get the GridFS bucket instance from the database configuration, which is used to interact with files stored in MongoDB using GridFS
 
-        const readableStream = Readable.from(req.file.buffer);
+        const readableStream = Readable.from(req.file.buffer); // Creates a readable stream from the uploaded file's buffer, which allows us to pipe the file data into the GridFS upload stream for storage in MongoDB
 
-        const uploadStream = bucket.openUploadStream(req.file.originalname, {
+        const uploadStream = bucket.openUploadStream(req.file.originalname, { // Opens an upload stream in the GridFS bucket with the original filename and metadata for the file being uploaded
             contentType: req.file.mimetype,
             metadata: {field: req.file.fieldname},
         });
 
-        const fileId = uploadStream.id;
-
-        let responded = false;
+        const fileId = uploadStream.id; // Gets the ID of the file being uploaded
+        let responded = false; // Used to prevent multiple responses in case of errors or multiple events
 
         uploadStream.on("error", (err) =>{
-            if(responded || res.headersSent) return;
-            responded = true;
-            return res.status(500).json({ message: "Upload failed", error: err.message});
+            if(responded || res.headersSent) return; // If a response has already been sent or the headers have been sent
+            responded = true; // Sets responded to true to prevent further responses
+            return res.status(500).json({message: "Upload failed", error: err.message}); // Returns an error response if the upload fails
         });
         
         uploadStream.on("finish", () =>{
             if(responded || res.headersSent) return;
             responded = true;
-
             return res.status(201).json({message: "Uploaded", file: {id: uploadStream.id}});    
         });
 
-        readableStream.pipe(uploadStream);
+        readableStream.pipe(uploadStream); // Pipes the readable stream of the file data into the GridFS upload stream, which handles the actual storage of the file in MongoDB
     }catch(err){
         if(res.headersSent) return;
-        return res.status(500).json({message: "Server error", error: err.message });
+        return res.status(500).json({message: "Server error", error: err.message || String(err)});
     }
 }
 

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 
 const SignUp = () =>{
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState({ // This is the state for the form, which includes all the fields needed for signup
         name: "",
         email: "",
         address: "",
@@ -11,38 +11,38 @@ const SignUp = () =>{
         confirmPassword: ""
     })
 
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
-    const [success, setSuccess] = useState("")
+    const [loading, setLoading] = useState(false) // Loading state, used for disabling the form and showing loading text
+    const [error, setError] = useState("") // Error state, used to show error messages
+    const [success, setSuccess] = useState("") // Success state, used to show success messages
 
     const handleChange = (e) =>{
-        setForm((prev) => ({...prev, [e.target.name]: e.target.value}));
+        setForm((prev) => ({...prev, [e.target.name]: e.target.value})); // This updates the form state when an input changes. It uses the name of the input to update the correct field in the form state.
     };
 
     const handleSubmit = async (e) =>{
         e.preventDefault()
-        setError("")
+        setError("") // Resets error and success messages on new submission
         setSuccess("")
 
-        if(!form.name || !form.email || !form.address || !form.password){
-            setError("Please fill in all required fields")
-            return
+        if(!form.name || !form.email || !form.address || !form.password){ // If any of the required fields are missing,
+            setError("Please fill in all required fields") // Show an error message
+            return // Stop the submission
         }
 
-        if(form.password.length < 8){
-            setError("Password must be at least 8 characters")
-            return
+        if(form.password.length < 8){ // If the password is too short,
+            setError("Password must be at least 8 characters") // Show an error message
+            return // Stop the submission
         }
 
-        if(form.password !== form.confirmPassword){
-            setError("Passwords do not match")
-            return
+        if(form.password !== form.confirmPassword){ // If the passwords do not match,
+            setError("Passwords do not match") // Show an error message
+            return // Stop the submission
         }
 
         try{
-            setLoading(true)
+            setLoading(true) // Starts loading
 
-            const res = await fetch("http://localhost:5000/api/auth/register", {
+            const res = await fetch("http://localhost:5000/api/auth/register", { // This sends the signup data to the server
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
@@ -53,17 +53,17 @@ const SignUp = () =>{
                 })
             })
 
-            const data = await res.json()
+            const data = await res.json() // Parses the response as JSON
 
-            if(!res.ok) throw new Error(data?.message || "Signup failed")
+            if(!res.ok) throw new Error(data?.message || "Signup failed") // If the response is bad, throw error
 
-            setSuccess("Signup successful! You can now log in.")
-            setForm({name: "", email: "", address: "", password: "", confirmPassword: ""})
+            setSuccess("Signup successful! You can now log in.") // Success message
+            setForm({name: "", email: "", address: "", password: "", confirmPassword: ""}) // Resets the form
         }catch(err){
-            console.error(err)
-            alert(err.message || "Something went wrong")
+            console.error(err) // Logs the error for debugging
+            alert(err.message || "Something went wrong") // Alerts the user of the error
         }finally{
-            setLoading(false)
+            setLoading(false) // Stops loading no matter what
         }
     }
 
@@ -87,8 +87,8 @@ const SignUp = () =>{
                     {loading ? "Signing Up...": "Sign Up"}
                 </button>
 
-                {error && <p className="error">{error}</p>}
-                {success && <p className="success">{success}</p>}
+                {error && <p className="error">{error}</p>} {/* This shows the error message if there is one */}
+                {success && <p className="success">{success}</p>} {/* This shows the success message if there is one */}
             </form>
         </div>
     )

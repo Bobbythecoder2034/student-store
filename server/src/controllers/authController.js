@@ -19,20 +19,20 @@ function signToken(user){
 }
 
 // POST /api/auth/register
-const register = async (req, res) =>{
+const register = async (req, res) =>{ // Handles user registration
     try{
-        const {name, email, address, password} = req.body
+        const {name, email, address, password} = req.body // Gets the required fields from the request body
 
-        if(!name || !email || !address || !password) return res.status(400).json({error: "Missing required fields"})
+        if(!name || !email || !address || !password) return res.status(400).json({error: "Missing required fields"}) // Checks for missing fields
 
-        const normalizedEmail = email.toLowerCase().trim()
+        const normalizedEmail = email.toLowerCase().trim() // Normalizes the email for consistency and to avoid duplicates due to case or whitespace
         
-        const existing = await User.findOne({email: normalizedEmail})
-        if(existing) return res.status(409).json({ error: "Email already in use"})
+        const existing = await User.findOne({email: normalizedEmail}) // Checks if the email is already in use
+        if(existing) return res.status(409).json({ error: "Email already in use"}) // If it is, return error
         
-        const passwordHash = await bcrypt.hash(password, 12)
+        const passwordHash = await bcrypt.hash(password, 12) // Hashes the password for security
 
-        const user = await User.create({
+        const user = await User.create({ // Creates a new user in the database with the provided information and the hashed password and the default role of "user"
             name: name.trim(),
             email: normalizedEmail,
             address: address.toLowerCase().trim(),
@@ -40,11 +40,9 @@ const register = async (req, res) =>{
             role: "user",
         });
 
-        const token = signToken(user)
+        const token = signToken(user) // Creates a JWT token for the new user, allowing them to be logged in immediately after registration without needing to log in separately.
         
-        //This is so that the site doesn't need to decode the token to find a user.
-        //The token is only for the server for verification. Front-end should not be decrypting everything.
-        res.status(201).json({
+        res.status(201).json({ // Sends a success response with the token and user info
             data: {
                 message: "Registered",
                 token,
@@ -52,15 +50,15 @@ const register = async (req, res) =>{
             }
         })
     }catch(err){
-        return res.status(500).json({message: err.message || "Server Error"})
+        return res.status(500).json({message: err.message || "Server Error"}) // Returns a server error response if something goes wrong
     }
 }
 
 // POST /api/auth/login
-const login = async (req, res) =>{
+const login = async (req, res) =>{ // Handles user login
     try{
-        const {email, password} = req.body
-        if(!email || !password) return res.status(400).json({error: "Email and Password are required"})
+        const {email, password} = req.body // Gets the email and password from the request body
+        if(!email || !password) return res.status(400).json({error: "Email and Password are required"}) // Checks for missing fields
 
         const normalizedEmail = email.toLowerCase().trim()
 
@@ -69,10 +67,9 @@ const login = async (req, res) =>{
         
         const ok = await bcrypt.compare(password, user.passwordHash)
         if(!ok) return res.status(404).json({error: "Invalid Credentials"})
-        // Invalid Credentials is there to avoid lawsuits, as telling people which one is wrong reduces possible outcomes
 
         const token = signToken(user)
-        //sends this back to the user
+
         res.json({
             data:{
                 message: "Logged in",
