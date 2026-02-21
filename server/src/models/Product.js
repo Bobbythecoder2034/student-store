@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema(
     {
+
+        id:{type:Number, required: true, trim:true},
         name: {type: String, required: true, maxlength: 100},
 
         // *** slug = unique URL with no spaces used as the URL to navigate to the item

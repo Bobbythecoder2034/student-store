@@ -19,6 +19,19 @@ const getProducts = async (req, res, next) => {
     }
 }
 
+// GET /api/public/products/:id (Filter/Search)
+const getProductById = async (req, res, next) => {
+    try {
+        const product = await Product.findOne({_id:req.params.id})
+        if(!product){
+            res.status(404).json({message: 'There is no product'})
+        }
+        res.json(product)
+    } catch (error) {
+        res.status(404).json({message: error})
+    }
+}
+
 // GET /api/public/customs (Filter/Search)
 const getCustom = async (req, res, next) => {
     try {
@@ -130,4 +143,4 @@ const createTestimonial = async (req, res, next) => {
     }
 }
 
-module.exports = {getProducts, getCustom, createCustom, createCustomFile, getTestimonial, createTestimonial}
+module.exports = {getProducts, getProductById, getCustom, createCustom, getTestimonial, createTestimonial, createCustomFile}

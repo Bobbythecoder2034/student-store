@@ -7,6 +7,7 @@ import NotFound from './pages/NotFound.jsx'
 import Products from './pages/Products.jsx'
 import Testimonials from './pages/Testimonials.jsx'
 import Order from './pages/CustomOrder.jsx'
+import Detail from './pages/Detail.jsx'
 import SignUp from './pages/SignUp.jsx'
 import Admin from './pages/adminDashboard.jsx'
 import './styles/css/style.css'
@@ -27,7 +28,9 @@ const App = () => {
             <Route path='/products' element={<Products/>}/>
             <Route path='/testimonials' element={<Testimonials/>}/>
             <Route path='/custom-order' element={<Order/>}/>
-            <Route path="/products/:slug" />
+            
+            <Route path="/products/:id" element={<Detail/>} />
+
             <Route path="/sign-up" element={<SignUp/>}/>
             <Route path="/admin" element={<Admin/>}/>
             <Route path="*" element={<NotFound/>}/>
