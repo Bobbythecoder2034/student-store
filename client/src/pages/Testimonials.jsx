@@ -15,18 +15,6 @@ const Testimonials = () => {
         stuff()
     }, [])
 
-    // const fetchTestimonials = async () => {
-    //     try{
-    //         const response = await fetch('/api/testimonials')
-    //         const data = await response.json()
-    //         setTestimonials(data)
-    //         setLoading(false)
-    //     }catch (err){
-    //         console.error('Error fetching testimonials:', err)
-    //         setLoading(false)
-    //     }
-    // }
-
     
 
     return (
